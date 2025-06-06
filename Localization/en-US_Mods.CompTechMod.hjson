@@ -91,6 +91,28 @@ Items: {
 			Right click to open
 			'''
 	}
+
+	BloodyLightningPickaxe: {
+		DisplayName: Bloody Lightning Pickaxe
+		Tooltip:
+			'''
+			Made of blood materials
+
+			A Pickaxe that lets you dig EVERYTHING
+
+			[c/1BE9C0:- Developer's Item - ]
+			'''
+	}
+
+	BloodyClimax: {
+		DisplayName: Bloody Climax
+		Tooltip:
+			'''
+			Fires a powerful blood shot every 1/3 second
+
+			[c/1BE9C0:- Developer's Item - ]
+			'''
+	}
 }
 
 Buffs: {
