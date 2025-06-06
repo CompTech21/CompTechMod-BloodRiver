@@ -1,0 +1,29 @@
+# Для Visual Studio / Rider (IDE)
+.idea/
+.vs/
+*.suo
+*.user
+*.iml
+*.csproj.user
+
+# Сборочные папки и файлы
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.log
+*.tmod
+
+# Windows системные файлы
+Thumbs.db
+desktop.ini
+
+# Игнорируем все временные и кэш файлы
+*.db
+
+# Но НЕ игнорируем папку Content и все ее содержимое!
+!Content/
+!Content/**
+
+# НЕ игнорируем никаких PNG, OGG, WAV и других ресурсов из Content

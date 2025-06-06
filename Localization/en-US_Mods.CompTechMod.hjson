@@ -1,0 +1,129 @@
+Items: {
+	IhorSword: {
+		DisplayName: Ihor Sword
+		Tooltip:
+			'''
+			Sprays a shower of ichor
+			Decreases target's defense
+			'''
+	}
+
+	CursedSword: {
+		DisplayName: Cursed Sword
+		Tooltip: Summons unholy fire balls
+	}
+
+	Rom: {
+		DisplayName: Rom
+		Tooltip:
+			'''
+			A pirate's favorite breakfast
+			      
+			+20% damage
+			+15% movement speed
+			-5 defense
+			'''
+	}
+
+	BleedingOreItem: {
+		DisplayName: Bleeding Ore
+		Tooltip: ""
+	}
+
+	BleedingBar: {
+		DisplayName: Bleeding Bar
+		Tooltip:
+			'''
+			It seems he is still bleeding
+			Incredibly strong
+			'''
+	}
+
+	TomeOfConstellations: {
+		DisplayName: Tome Of Constellations
+		Tooltip: Releases constellations at the cursor location
+	}
+
+	SoulGem: {
+		DisplayName: Soul Gem
+		Tooltip:
+			'''
+			Increases overall damage by 120%
+			Sets max HP to 1
+			If there are no debuffs, survive any attack by 1 HP
+			Removing the item causes immediate death
+
+			[c/6612BA:- Benefactor's Item - ]
+			'''
+	}
+
+	CongealedBlood: {
+		DisplayName: Congealed Blood
+		Tooltip: Only on the worst nights
+	}
+
+	Strawberry: {
+		DisplayName: Strawberry
+		Tooltip:
+			'''
+			Permanently increases your HP by 25
+			Can only be used once
+
+			[c/E44477:- Straight from Celeste -]
+			'''
+	}
+
+	ArtificialBulb: {
+		DisplayName: Artificial Bulb
+		Tooltip:
+			'''
+			Summons Plantera when used in the Jungle
+			Enters a rage outside of the Underground Jungle
+			'''
+	}
+
+	StarterBag: {
+		DisplayName: Starter Bag
+		Tooltip:
+			'''
+			Contains several useful things
+
+			Right click to open
+			'''
+	}
+}
+
+Buffs: {
+	RomBuff: {
+		DisplayName: Pirate's Buzz
+		Description: You're feeling bold, reckless, and slightly dizzy
+	}
+
+	EctoplasmDebuff: {
+		DisplayName: Ectoplasmic Weakening
+		Description: Your protection is compromised. The Ghost Pact effect is inactive.
+	}
+}
+
+Projectiles.Constellations.DisplayName: Constellations
+
+Configs: {
+	DifficultyConfig: {
+		DisplayName: Game Config
+
+		IncreaseBossHealth: {
+			Label: Increase Boss HP by 50%
+			Tooltip: ""
+		}
+
+		IncreaseMobHealth: {
+			Label: Increase Mob HP by 100%
+			Tooltip: ""
+		}
+
+		AlwaysBestWeaponPrefix: {
+			Label: Apply best prefix when reforging weapons (may contain bugs)
+			Tooltip: Best prefix ONLY FOR WEAPONS!
+		}
+	}
+}
