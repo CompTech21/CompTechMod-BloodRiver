@@ -56,6 +56,7 @@ namespace CompTechMod.Content.Items
             CreateRecipe()
                 .AddIngredient(ItemID.SniperRifle, 1)
                 .AddIngredient(ItemID.FragmentVortex, 25)
+                .AddIngredient(ModContent.ItemType<CongealedBlood>(), 150)
                 .AddIngredient(ItemID.LunarBar, 10)
                 .AddIngredient(ModContent.ItemType<BleedingBar>(), 10)
                 .AddTile(TileID.LunarCraftingStation)

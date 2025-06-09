@@ -131,6 +131,21 @@ Items: {
 			Will help on early bosses
 			'''
 	}
+
+	BloodyDawn: {
+		DisplayName: Bloody Dawn
+		Tooltip:
+			'''
+			Applies most debuffs to the enemy
+
+			[c/1BE9C0:- Developer's Item - ]
+			'''
+	}
+
+	LihzardEssence: {
+		DisplayName: Lihzard Essence
+		Tooltip: A fragment of a fallen solar deity
+	}
 }
 
 Buffs: {
@@ -145,7 +160,10 @@ Buffs: {
 	}
 }
 
-Projectiles.Constellations.DisplayName: Constellations
+Projectiles: {
+	Constellations.DisplayName: Constellations
+	BloodyDawnProj.DisplayName: Bloody Dawn Proj
+}
 
 Configs: {
 	DifficultyConfig: {

@@ -19,7 +19,7 @@ namespace CompTechMod.Content.Items
             Item.useAnimation = 2;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 9f;
-            Item.value = Item.sellPrice(platinum: 3, gold: 50);
+            Item.value = Item.sellPrice(gold: 90);
             Item.rare = ItemRarityID.Red;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
@@ -33,8 +33,9 @@ namespace CompTechMod.Content.Items
             CreateRecipe()
                 .AddIngredient(ItemID.NebulaPickaxe, 1)
                 .AddIngredient(ItemID.LaserDrill, 1)
-                .AddIngredient(ItemID.LunarBar, 10)
-                .AddIngredient(ModContent.ItemType<BleedingBar>(), 10)
+                .AddIngredient(ModContent.ItemType<CongealedBlood>(), 150)
+                .AddIngredient(ItemID.LunarBar, 20)
+                .AddIngredient(ModContent.ItemType<BleedingBar>(), 20)
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }
