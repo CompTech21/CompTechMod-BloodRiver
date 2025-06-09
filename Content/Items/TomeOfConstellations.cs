@@ -59,7 +59,7 @@ namespace CompTechMod.Content.Items
                 .AddIngredient(ItemID.SpellTome)
                 .AddIngredient(ItemID.FallenStar, 50)
                 .AddIngredient(ItemID.SoulofLight, 15)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.Bookcases)
                 .Register();
         }
     }

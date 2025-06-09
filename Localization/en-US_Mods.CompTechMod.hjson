@@ -146,6 +146,115 @@ Items: {
 		DisplayName: Lihzard Essence
 		Tooltip: A fragment of a fallen solar deity
 	}
+
+	SunResonator: {
+		DisplayName: Sun Resonator
+		Tooltip:
+			'''
+			Increases magic damage by 18%
+			Increases maximum mana by 60
+			Decreases mana cost by 11%
+			Automatically uses mana potions when needed
+			Increases the radius of mana star collection
+			'''
+	}
+
+	SecurityEmblem: {
+		DisplayName: Security Emblem
+		Tooltip: Increases defense by 6
+	}
+
+	SpeedEmblem: {
+		DisplayName: Speed Emblem
+		Tooltip:
+			'''
+			Increases movement speed by 16%
+			Increases melee attack speed by 8%
+			'''
+	}
+
+	MightEmblem: {
+		DisplayName: Might Emblem
+		Tooltip:
+			'''
+			Increases melee damage by 14%
+			Increases melee knockback
+			Increases melee speed by 15%
+			'''
+	}
+
+	PrecisionEmblem: {
+		DisplayName: Precision Emblem
+		Tooltip:
+			'''
+			Increases all damage by 18%
+			Increases critical strike chance by 15%
+			'''
+	}
+
+	TenacityEmblem: {
+		DisplayName: Tenacity Emblem
+		Tooltip:
+			'''
+			Reduces damage taken by 12%
+			Increases max HP by 25
+			Increases defense by 10
+			'''
+	}
+
+	DynamicEmblem: {
+		DisplayName: Dynamic Emblem
+		Tooltip:
+			'''
+			Greatly increases movement speed by 29%
+			Increases flight time by 25%
+			Increases attack speed by 17%
+			'''
+	}
+
+	SupremacyEmblem: {
+		DisplayName: Supremacy Emblem
+		Tooltip:
+			'''
+			Increases all damage by 15%
+			Increases armor penetration by 15
+			Increases critical chance by 11%
+			Increases attack speed by 13%
+			'''
+	}
+
+	MasteryEmblem: {
+		DisplayName: Mastery Emblem
+		Tooltip:
+			'''
+			Increases all damage by 18%
+			Increases critical chance by 14%
+			'''
+	}
+
+	UnityEmblem: {
+		DisplayName: Unity Emblem
+		Tooltip:
+			'''
+			Reduces damage taken by 15%
+			Increases HP by 30
+			Increases defense by 12
+			Greatly increases movement speed by 33%
+			Increases flight time by 45%
+			Increases attack speed by 19%
+			'''
+	}
+
+	AnnihilationEmblem: {
+		DisplayName: Annihilation Emblem
+		Tooltip:
+			'''
+			Increases all damage by 30%
+			Increases armor penetration by 15 units
+			Increases critical chance by 19%
+			Increases attack speed by 17%
+			'''
+	}
 }
 
 Buffs: {

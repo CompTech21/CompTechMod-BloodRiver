@@ -57,8 +57,8 @@ namespace CompTechMod.Content.Items
                 .AddIngredient(ItemID.SniperRifle, 1)
                 .AddIngredient(ItemID.FragmentVortex, 25)
                 .AddIngredient(ModContent.ItemType<CongealedBlood>(), 150)
-                .AddIngredient(ItemID.LunarBar, 10)
-                .AddIngredient(ModContent.ItemType<BleedingBar>(), 10)
+                .AddIngredient(ItemID.LunarBar, 20)
+                .AddIngredient(ModContent.ItemType<BleedingBar>(), 20)
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }
