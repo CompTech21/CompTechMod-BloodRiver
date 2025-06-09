@@ -113,6 +113,24 @@ Items: {
 			[c/1BE9C0:- Developer's Item - ]
 			'''
 	}
+
+	BootsOfFrivolity: {
+		DisplayName: Boots Of Frivolity
+		Tooltip:
+			'''
+			The worst boots of all
+			Until you find something better
+			'''
+	}
+
+	WornShield: {
+		DisplayName: Worn Shield
+		Tooltip:
+			'''
+			Allows you to make a very short dash
+			Will help on early bosses
+			'''
+	}
 }
 
 Buffs: {

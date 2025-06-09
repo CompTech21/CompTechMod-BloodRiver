@@ -38,6 +38,9 @@ namespace CompTechMod.Content.Items
             // Маска солнца (Sun Mask)
             player.QuickSpawnItem(null, ItemID.SunMask, 1);
 
+            // Сапоги
+            player.QuickSpawnItem(null, ModContent.ItemType<BootsOfFrivolity>(), 1);
+
             // Семена порчи
             player.QuickSpawnItem(null, ItemID.CorruptSeeds, 25);
 
