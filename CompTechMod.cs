@@ -1,15 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Terraria;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework.Graphics;
+using CompTechMod.Common.Systems;
 
 namespace CompTechMod
 {
-	// Please read https://github.com/tModLoader/tModLoader/wiki/Basic-tModLoader-Modding-Guide#mod-skeleton-contents for more information about the various files in a mod.
 	public class CompTechMod : Mod
 	{
-
+		public override void PostSetupContent()
+		{
+			if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
+			{
+				bossChecklist.Call(
+					"AddBoss",
+					this,
+					"Deep Sea Shark",
+					ModContent.NPCType<Content.NPCs.DeepSeaShark>(),
+					0.25f, // после Eye of Cthulhu (у него 0.2)
+					() => NPC.downedBoss1,
+					() => CompTechModSystem.downedDeepSeaShark,
+					new string[]
+					{
+						"Spawned rarely in the ocean after Eye of Cthulhu is defeated."
+					},
+					ModContent.Request<Texture2D>("CompTechMod/Content/NPCs/DeepSeaShark").Value
+				);
+			}
+		}
 	}
 }

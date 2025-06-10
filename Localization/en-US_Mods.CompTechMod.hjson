@@ -347,6 +347,11 @@ Items: {
 		DisplayName: Shell Staff
 		Tooltip: Releases shells that pass through enemies
 	}
+
+	SeaSplinter: {
+		DisplayName: Sea Splinter
+		Tooltip: ""
+	}
 }
 
 Buffs: {
@@ -394,4 +399,11 @@ Configs: {
 	}
 }
 
-NPCs.TestDummy.DisplayName: Test Dummy
+NPCs: {
+	TestDummy.DisplayName: Test Dummy
+
+	DeepSeaShark: {
+		DisplayName: Deep Sea Shark
+		BossChecklistIntegration.SpawnInfo: Spawn conditions unknown
+	}
+}

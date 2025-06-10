@@ -42,5 +42,16 @@ namespace CompTechMod.Content.Items
             }
             return false; // Чтобы не создавался снаряд по умолчанию
         }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.AmberStaff, 1);
+            recipe.AddIngredient(ItemID.Seashell, 15);
+            recipe.AddIngredient(ItemID.Starfish, 15);
+            recipe.AddIngredient(ModContent.ItemType<SeaSplinter>(), 15);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
     }
 }
