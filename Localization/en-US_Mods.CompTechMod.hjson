@@ -255,6 +255,63 @@ Items: {
 			Increases attack speed by 17%
 			'''
 	}
+
+	BloodyAscensionBoots: {
+		DisplayName: Bloody Ascension Boots
+		Tooltip:
+			'''
+			+18% All Damage
+			+11% Crit Chance
+			+30% Movement Speed
+
+			[c/1BE9C0:- Developer's Item - ]
+			'''
+	}
+
+	BloodyAscensionChestplate: {
+		DisplayName: Bloody Ascension Chestplate
+		Tooltip:
+			'''
+			+21% All Damage
+			+11% Crit Chance
+			+15% Mining Speed
+
+			[c/1BE9C0:- Developer's Item - ]
+			'''
+	}
+
+	BloodyAscensionHelmet: {
+		DisplayName: Bloody Ascension Helmet
+		Tooltip:
+			'''
+			+18% All Damage
+			+15% Crit Chance
+			+10 Summon Slots
+
+			[c/1BE9C0:- Developer's Item - ]
+			'''
+	}
+
+	HeartSource: {
+		DisplayName: Heart Source
+		Tooltip:
+			'''
+			Reduces damage taken by 40%
+			Increases maximum health by 70
+			Increases maximum mana by 500
+			Increases defense by 50
+			Considerably increases movement speed by 66%
+			Increases flight time by 75%
+			Increases attack speed by 43%
+			Increases overall damage by 150%
+			Increases armor penetration by 50
+			Increases critical chance by 66%
+			Grants immunity to all debuffs
+			Grants immunity to knockback
+
+			[c/1BE9C0:- Developer's Item - ]
+			'''
+	}
 }
 
 Buffs: {
