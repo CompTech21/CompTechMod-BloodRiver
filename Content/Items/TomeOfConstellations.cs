@@ -15,7 +15,7 @@ namespace CompTechMod.Content.Items
         {
             Item.width = 38;
             Item.height = 40;
-            Item.damage = 36;
+            Item.damage = 43;
             Item.DamageType = DamageClass.Magic;
             Item.mana = 11;
             Item.rare = ItemRarityID.Pink;

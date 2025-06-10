@@ -342,6 +342,11 @@ Items: {
 			Right-click to destroy all dummies
 			'''
 	}
+
+	ShellStaff: {
+		DisplayName: Shell Staff
+		Tooltip: Releases shells that pass through enemies
+	}
 }
 
 Buffs: {
@@ -365,6 +370,7 @@ Projectiles: {
 	Constellations.DisplayName: Constellations
 	BloodyDawnProj.DisplayName: Bloody Dawn Proj
 	BloodyTearsProj.DisplayName: Bloody Tears Proj
+	ShellStaffProj.DisplayName: Shell Staff Proj
 }
 
 Configs: {
