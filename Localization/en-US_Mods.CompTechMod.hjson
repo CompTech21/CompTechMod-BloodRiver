@@ -312,6 +312,27 @@ Items: {
 			[c/1BE9C0:- Developer's Item - ]
 			'''
 	}
+
+	SunElixir: {
+		DisplayName: Sun Elixir
+		Tooltip:
+			'''
+			Increase HP regeneration by 2
+			Increase flight time by 25%
+			Increase movement speed by 8%
+			'''
+	}
+
+	BloodyTears: {
+		DisplayName: Bloody Tears
+		Tooltip:
+			'''
+			Releases bloody tears at the cursor's location
+			Blood tears apply most debuffs to the enemy
+
+			[c/1BE9C0:- Developer's Item - ]
+			'''
+	}
 }
 
 Buffs: {
@@ -324,11 +345,17 @@ Buffs: {
 		DisplayName: Ectoplasmic Weakening
 		Description: Your protection is compromised. The Ghost Pact effect is inactive.
 	}
+
+	SunElixirBuff: {
+		DisplayName: Solar Fury
+		Description: You are filled with the energy of the solar deity
+	}
 }
 
 Projectiles: {
 	Constellations.DisplayName: Constellations
 	BloodyDawnProj.DisplayName: Bloody Dawn Proj
+	BloodyTearsProj.DisplayName: Bloody Tears Proj
 }
 
 Configs: {
