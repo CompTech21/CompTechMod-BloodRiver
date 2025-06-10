@@ -1,1 +1,15 @@
-This description will show up on the steam page, check out https://steamcommunity.com/comment/Guide/formattinghelp.
+Blood River is a Terraria mod focused on expanding vanilla gameplay.
+
+Current Features:
+
+- 40+ New Items
+- 2 New Enemies
+- 1 Mini-Boss
+- Hidden Secrets
+
+Special Thanks:
+
+Odysseus of Ithaca (Spriter)
+
+Development Status:
+This mod is currently in Alpha and will receive ongoing updates. Your support helps improve Blood River!
