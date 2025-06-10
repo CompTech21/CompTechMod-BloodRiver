@@ -333,6 +333,15 @@ Items: {
 			[c/1BE9C0:- Developer's Item - ]
 			'''
 	}
+
+	TestDummySummon: {
+		DisplayName: Test Dummy
+		Tooltip:
+			'''
+			Left-click to summon dummies at the cursor's location
+			Right-click to destroy all dummies
+			'''
+	}
 }
 
 Buffs: {
@@ -378,3 +387,5 @@ Configs: {
 		}
 	}
 }
+
+NPCs.TestDummy.DisplayName: Test Dummy
