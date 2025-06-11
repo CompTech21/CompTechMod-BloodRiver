@@ -352,6 +352,29 @@ Items: {
 		DisplayName: Sea Splinter
 		Tooltip: ""
 	}
+
+	PrecisionBelt: {
+		DisplayName: Precision Belt
+		Tooltip:
+			'''
+			Increases range crit chance by 8%
+			Increases projectile speed by 10%
+			'''
+	}
+
+	SeaPickaxe: {
+		DisplayName: Sea Pickaxe
+		Tooltip: ""
+	}
+
+	GelatinShield: {
+		DisplayName: Gelatin Shield
+		Tooltip:
+			'''
+			Allows you to perform a powerful gelatinous dash
+			Through enemies without taking damage
+			'''
+	}
 }
 
 Buffs: {
