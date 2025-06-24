@@ -407,12 +407,12 @@ Configs: {
 
 		IncreaseBossHealth: {
 			Label: Increase Boss HP by 50%
-			Tooltip: ""
+			Tooltip: Recommended by developers
 		}
 
 		IncreaseMobHealth: {
 			Label: Increase Mob HP by 100%
-			Tooltip: ""
+			Tooltip: Recommended by developers
 		}
 
 		AlwaysBestWeaponPrefix: {
@@ -430,3 +430,9 @@ NPCs: {
 		BossChecklistIntegration.SpawnInfo: Spawn conditions unknown
 	}
 }
+
+SetBonuses.BloodyAscension:
+	'''
+	Passive regeneration when dealing damage
+	Damage and crit chance from armor are increased by 10% if health > 75%
+	'''

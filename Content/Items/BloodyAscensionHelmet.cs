@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using CompTechMod.Common.Players;
+using Terraria.Localization;
+
 
 namespace CompTechMod.Content.Items
 {
@@ -33,8 +35,7 @@ namespace CompTechMod.Content.Items
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "Passive regeneration when dealing damage\n" +
-                              "Damage and crit chance from armor are increased by 10% if health > 75%";
+            player.setBonus = Language.GetTextValue("Mods.CompTechMod.SetBonuses.BloodyAscension");
             player.GetModPlayer<BloodyAscensionPlayer>().bloodySet = true;
         }
 
