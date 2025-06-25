@@ -8,7 +8,7 @@ namespace CompTechMod.Content.Items
     {
         public override void SetDefaults()
         {
-            Item.damage = 625;
+            Item.damage = 325;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useAnimation = 3;
             Item.useTime = 3;

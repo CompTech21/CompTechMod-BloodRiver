@@ -375,6 +375,16 @@ Items: {
 			Through enemies without taking damage
 			'''
 	}
+
+	GelSlicer: {
+		DisplayName: Gel Slicer
+		Tooltip:
+			'''
+			Covers enemies in gel slime
+
+			[c/00B5F1:- Slippery, painful... and fun? - ]
+			'''
+	}
 }
 
 Buffs: {
@@ -399,6 +409,8 @@ Projectiles: {
 	BloodyDawnProj.DisplayName: Bloody Dawn Proj
 	BloodyTearsProj.DisplayName: Bloody Tears Proj
 	ShellStaffProj.DisplayName: Shell Staff Proj
+	GelSlicerSwing.DisplayName: Gel Slicer Swing
+	GelSlicerProj.DisplayName: Gel Slicer Proj
 }
 
 Configs: {
@@ -436,3 +448,10 @@ SetBonuses.BloodyAscension:
 	Passive regeneration when dealing damage
 	Damage and crit chance from armor are increased by 10% if health > 75%
 	'''
+
+Messages: {
+	BleedingOreBlessed: The world is blessed, and in its depths pulses the Bleeding Ore.
+	SolarDeityDeath: With the death of the solar deity, the sky was filled with his last breath...
+}
+
+Tiles.BleedingOre.MapEntry: Bleeding Ore

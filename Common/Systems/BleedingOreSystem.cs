@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.Localization;
 
 namespace CompTechMod.Common.Systems
 {
@@ -34,7 +35,7 @@ namespace CompTechMod.Common.Systems
                 _oreGenerated = true;
 
                 Color darkRed = new Color(139, 0, 0);
-                Main.NewText("The world is blessed, and in its depths pulses the Bleeding Ore.", darkRed);
+                Main.NewText(Language.GetTextValue("Mods.CompTechMod.Messages.BleedingOreBlessed"), new Color(140, 0, 0));
             }
         }
 

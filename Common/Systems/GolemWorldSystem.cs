@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace CompTechMod.Common.Systems
 {
@@ -39,7 +40,7 @@ namespace CompTechMod.Common.Systems
 				printedMessage = true;
 
 				if (Main.netMode != NetmodeID.Server) {
-					Main.NewText("With the death of the solar deity, the sky was filled with his last breath...", new Color(255, 185, 23));
+					Main.NewText(Language.GetTextValue("Mods.CompTechMod.Messages.SolarDeityDeath"), new Color(255, 185, 23));
 				}
 			}
 		}

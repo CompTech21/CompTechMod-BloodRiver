@@ -376,6 +376,16 @@ Items: {
 			Сквозь врагов, не получая урона
 			'''
 	}
+
+	GelSlicer: {
+		DisplayName: Гелевый Резак
+		Tooltip:
+			'''
+			Обливает врагов гелевой слизью
+
+			[c/00B5F1:- Скользко, больно... и весело? - ]
+			'''
+	}
 }
 
 Buffs: {
@@ -400,6 +410,8 @@ Projectiles: {
 	BloodyDawnProj.DisplayName: Bloody Dawn Proj
 	BloodyTearsProj.DisplayName: Bloody Tears Proj
 	ShellStaffProj.DisplayName: Shell Staff Proj
+	// GelSlicerSwing.DisplayName: Gel Slicer Swing
+	// GelSlicerProj.DisplayName: Gel Slicer Proj
 }
 
 Configs: {
@@ -437,3 +449,10 @@ SetBonuses.BloodyAscension:
 	Пассивная регенерация при нанесении урона
 	Урон и шанс крита от брони увеличиваются на 10%, если здоровье выше 75%
 	'''
+
+Messages: {
+	BleedingOreBlessed: Мир благословлён, и в его глубинах пульсирует Истекающая Руда.
+	SolarDeityDeath: С гибелью солнечного божества небо наполнилось его последним дыханием...
+}
+
+Tiles.BleedingOre.MapEntry: Истекающая руда

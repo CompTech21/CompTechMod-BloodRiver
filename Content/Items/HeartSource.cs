@@ -14,7 +14,7 @@ namespace CompTechMod.Content.Items
             Item.width = 32;
             Item.height = 32;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Red;
+            Item.rare = -12;
             Item.value = Item.sellPrice(platinum: 15);
         }
 

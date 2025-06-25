@@ -19,7 +19,7 @@ namespace CompTechMod.Content.Tiles
 
             TileID.Sets.Ore[Type] = true;
 
-            AddMapEntry(new Color(190, 30, 40), Language.GetText("Bleeding Ore"));
+            AddMapEntry(new Color(190, 30, 40), Language.GetText("Mods.CompTechMod.Tiles.BleedingOre.MapEntry"));
 
             MinPick = 225;
             MineResist = 4.2f;

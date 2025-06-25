@@ -47,11 +47,6 @@ namespace CompTechMod.Content.NPCs
                 npcLoot.Add(ItemDropRule.ByCondition(condition, seaSplinter, 1, 5, 5)); // 100%, 5
             }
 
-            // Мини-босс (замени на свой тип, например DeepSeaShark)
-            else if (npc.type == ModContent.NPCType<DeepSeaShark>())
-            {
-                npcLoot.Add(ItemDropRule.ByCondition(condition, seaSplinter, 1, 7, 10)); // 100%, 7–10
-            }
         }
 
         public override bool InstancePerEntity => true;
