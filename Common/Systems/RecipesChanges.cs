@@ -152,6 +152,19 @@ namespace CompTechMod.Common.Systems
                 .AddIngredient(ItemID.Ruby)
                 .AddTile(TileID.Anvils)
                 .Register();
+
+            Recipe.Create(ItemID.LifeCrystal)
+                .AddIngredient(ItemID.StoneBlock, 10)
+                .AddIngredient(ItemID.HealingPotion, 2)
+                .AddIngredient(ItemID.Ruby)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.BloodMoonStarter)
+                .AddIngredient(ItemID.Deathweed, 5)
+                .AddRecipeGroup("CompTechMod:EvilMushrooms", 5)
+                .AddTile(TileID.DemonAltar)
+                .Register();
         }
     }
 }
