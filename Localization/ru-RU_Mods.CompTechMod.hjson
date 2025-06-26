@@ -386,6 +386,11 @@ Items: {
 			[c/00B5F1:- Скользко, больно... и весело? - ]
 			'''
 	}
+
+	EyeSpear: {
+		DisplayName: Глазное копьё
+		Tooltip: ""
+	}
 }
 
 Buffs: {
@@ -410,8 +415,9 @@ Projectiles: {
 	BloodyDawnProj.DisplayName: Bloody Dawn Proj
 	BloodyTearsProj.DisplayName: Bloody Tears Proj
 	ShellStaffProj.DisplayName: Shell Staff Proj
-	// GelSlicerSwing.DisplayName: Gel Slicer Swing
-	// GelSlicerProj.DisplayName: Gel Slicer Proj
+	GelSlicerSwing.DisplayName: Gel Slicer Swing
+	GelSlicerProj.DisplayName: Gel Slicer Proj
+	EyeSpearProj.DisplayName: Eye Spear Proj
 }
 
 Configs: {

@@ -385,6 +385,11 @@ Items: {
 			[c/00B5F1:- Slippery, painful... and fun? - ]
 			'''
 	}
+
+	EyeSpear: {
+		DisplayName: Eye Spear
+		Tooltip: ""
+	}
 }
 
 Buffs: {
@@ -411,6 +416,7 @@ Projectiles: {
 	ShellStaffProj.DisplayName: Shell Staff Proj
 	GelSlicerSwing.DisplayName: Gel Slicer Swing
 	GelSlicerProj.DisplayName: Gel Slicer Proj
+	EyeSpearProj.DisplayName: Eye Spear Proj
 }
 
 Configs: {

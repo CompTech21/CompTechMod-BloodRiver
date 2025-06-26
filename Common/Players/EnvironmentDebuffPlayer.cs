@@ -19,12 +19,6 @@ namespace CompTechMod.Common.Players
             {
                 Player.AddBuff(24, 2);
             }
-
-            // Подземелье (не поверхность) → Мрак (Darkness / ID: 22)
-            if (!Player.ZoneOverworldHeight) // исключаем поверхность
-            {
-                Player.AddBuff(22, 2);
-            }
         }
     }
 }
