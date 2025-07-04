@@ -390,6 +390,18 @@ Items: {
 		DisplayName: Eye Spear
 		Tooltip: ""
 	}
+
+	FrostHeart: {
+		DisplayName: Frozen Heart
+		Tooltip:
+			'''
+			Increases melee speed by 6%
+			Grants immunity to the Chilled and Frozen debuffs
+			When taking damage, there is a chance to apply the Frostburn debuff to the enemy
+
+			[c/2ba2fc:- Holding it gives you chills. But the effect is worth it - ]
+			'''
+	}
 }
 
 Buffs: {
@@ -458,6 +470,7 @@ SetBonuses.BloodyAscension:
 Messages: {
 	BleedingOreBlessed: The world is blessed, and in its depths pulses the Bleeding Ore.
 	SolarDeityDeath: With the death of the solar deity, the sky was filled with his last breath...
+	SeaSplinters: Sea creatures filled with sea splinters
 }
 
 Tiles.BleedingOre.MapEntry: Bleeding Ore
