@@ -20,8 +20,8 @@ namespace CompTechMod.Content.Items
             Item.useAnimation = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.rare = ItemRarityID.Lime;
-            Item.consumable = true;
-            Item.maxStack = 9999;
+            Item.consumable = false;
+            Item.maxStack = 1;
         }
 
         public override bool? UseItem(Player player)

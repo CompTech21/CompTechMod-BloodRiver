@@ -79,6 +79,7 @@ Items: {
 			'''
 			Summons Plantera when used in the Jungle
 			Enters a rage outside of the Underground Jungle
+			Does not get consumed
 			'''
 	}
 
@@ -473,4 +474,5 @@ Messages: {
 	SeaSplinters: Sea creatures filled with sea splinters
 }
 
+Tooltips.NotConsumed: Does not get consumed
 Tiles.BleedingOre.MapEntry: Bleeding Ore
