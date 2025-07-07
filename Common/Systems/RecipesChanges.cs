@@ -86,8 +86,8 @@ namespace CompTechMod.Common.Systems
 
             Recipe.Create(ItemID.RodofDiscord)
                 .AddIngredient(ItemID.IceRod)
-                .AddIngredient(ItemID.SoulofLight, 20)
-                .AddIngredient(ItemID.ChaosElementalBanner)
+                .AddIngredient(ItemID.SoulofLight, 50)
+                .AddIngredient(ItemID.ChaosElementalBanner, 4)
                 .AddTile(TileID.Solidifier)
                 .Register();
 
@@ -104,31 +104,31 @@ namespace CompTechMod.Common.Systems
                 .Register();
 
             Recipe.Create(ItemID.MagicDagger)
-                .AddIngredient(ItemID.GoldChest)
+                .AddIngredient(ItemID.GoldenKey)
                 .AddIngredient(ItemID.SoulofNight, 5)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
 
             Recipe.Create(ItemID.PhilosophersStone)
-                .AddIngredient(ItemID.GoldChest)
+                .AddIngredient(ItemID.GoldenKey)
                 .AddIngredient(ItemID.SoulofNight, 5)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
 
             Recipe.Create(ItemID.TitanGlove)
-                .AddIngredient(ItemID.GoldChest)
+                .AddIngredient(ItemID.GoldenKey)
                 .AddIngredient(ItemID.SoulofNight, 5)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
 
             Recipe.Create(ItemID.StarCloak)
-                .AddIngredient(ItemID.GoldChest)
+                .AddIngredient(ItemID.GoldenKey)
                 .AddIngredient(ItemID.SoulofNight, 5)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
 
             Recipe.Create(ItemID.CrossNecklace)
-                .AddIngredient(ItemID.GoldChest)
+                .AddIngredient(ItemID.GoldenKey)
                 .AddIngredient(ItemID.SoulofNight, 5)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
@@ -164,6 +164,82 @@ namespace CompTechMod.Common.Systems
                 .AddIngredient(ItemID.Deathweed, 5)
                 .AddRecipeGroup("CompTechMod:EvilMushrooms", 5)
                 .AddTile(TileID.DemonAltar)
+                .Register();
+
+            Recipe.Create(ItemID.Aglet)
+                .AddRecipeGroup("CompTechMod:GoldBar", 5)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.IceSkates)
+                .AddIngredient(ItemID.IceBlock, 50)
+                .AddRecipeGroup("CompTechMod:IronBar", 5)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.WaterWalkingBoots)
+                .AddIngredient(ItemID.Silk, 10)
+                .AddIngredient(ItemID.WaterWalkingPotion, 5)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.LavaCharm)
+                .AddIngredient(ItemID.LavaBucket, 3)
+                .AddRecipeGroup("CompTechMod:GoldBar", 10)
+                .AddIngredient(ItemID.Obsidian, 50)
+                .AddTile(TileID.Hellforge)
+                .Register();
+
+            Recipe.Create(ItemID.ObsidianRose)
+                .AddIngredient(ItemID.JungleRose, 1)
+                .AddIngredient(ItemID.Obsidian, 50)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.LuckyHorseshoe)
+                .AddRecipeGroup("CompTechMod:GoldBar", 5)
+                .AddIngredient(ItemID.Feather, 3)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.ShinyRedBalloon)
+                .AddIngredient(ItemID.WhiteString, 1)
+                .AddIngredient(ItemID.Gel, 25)
+                .AddIngredient(ItemID.Feather, 3)
+                .AddTile(TileID.Solidifier)
+                .Register();
+
+            Recipe.Create(ItemID.CelestialMagnet)
+                .AddIngredient(ItemID.Cloud, 50)
+                .AddIngredient(ItemID.SunplateBlock, 25)
+                .AddIngredient(ItemID.Feather, 3)
+                .AddTile(TileID.SkyMill)
+                .Register();
+
+            Recipe.Create(ItemID.PirateMap)
+                .AddIngredient(ItemID.Silk, 10)
+                .AddIngredient(ItemID.SoulofLight, 7)
+                .AddIngredient(ItemID.SoulofNight, 7)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+
+            Recipe.Create(ItemID.MagicConch)
+                .AddIngredient(ItemID.MagicConch, 1)
+                .AddIngredient(ItemID.WhitePearl, 3)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.CatBast)
+                .AddIngredient(ItemID.AntlionMandible, 10)
+                .AddRecipeGroup("CompTechMod:GoldBar", 5)
+                .AddIngredient(ItemID.Ruby, 1)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.Compass)
+                .AddRecipeGroup("CompTechMod:IronBar", 5)
+                .AddIngredient(ItemID.PiranhaBanner, 1)
+                .AddTile(TileID.Solidifier)
                 .Register();
         }
     }
