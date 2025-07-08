@@ -14,6 +14,7 @@ namespace CompTechMod.Common.Systems
                 return;
 
             shop.Add(new NPCShop.Entry(ModContent.ItemType<PrecisionBelt>(), Condition.DownedSkeletron));
+            shop.Add(ItemID.GoldenKey, Condition.Hardmode);
         }
     }
 }

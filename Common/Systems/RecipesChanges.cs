@@ -241,6 +241,12 @@ namespace CompTechMod.Common.Systems
                 .AddIngredient(ItemID.PiranhaBanner, 1)
                 .AddTile(TileID.Solidifier)
                 .Register();
+
+            Recipe.Create(ItemID.NaturesGift)
+                .AddIngredient(ItemID.JungleRose, 1)
+                .AddIngredient(ItemID.ManaCrystal, 1)
+                .AddTile(TileID.WorkBenches)
+                .Register();
         }
     }
 }
