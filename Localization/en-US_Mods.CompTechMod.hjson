@@ -420,6 +420,11 @@ Buffs: {
 		DisplayName: Solar Fury
 		Description: You are filled with the energy of the solar deity
 	}
+
+	BleedingBloodDebuff: {
+		Description: You are losing too much blood...
+		DisplayName: Bloody outpouring
+	}
 }
 
 Projectiles: {
@@ -460,6 +465,9 @@ NPCs: {
 		DisplayName: Deep Sea Shark
 		BossChecklistIntegration.SpawnInfo: Spawn conditions unknown
 	}
+
+	BleedingSlime.DisplayName: Bleeding Slime
+	EyeParasite.DisplayName: Eye Parasite
 }
 
 SetBonuses.BloodyAscension:

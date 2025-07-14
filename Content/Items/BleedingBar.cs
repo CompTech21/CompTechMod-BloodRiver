@@ -28,7 +28,7 @@ namespace CompTechMod.Content.Items
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<BleedingOreItem>(), 7);
+            recipe.AddIngredient(ModContent.ItemType<BleedingOreItem>(), 20);
             recipe.AddTile(TileID.LunarCraftingStation); // Ancient Manipulator
             recipe.Register();
         }

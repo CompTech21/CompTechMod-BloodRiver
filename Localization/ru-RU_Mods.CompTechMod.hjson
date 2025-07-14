@@ -421,6 +421,11 @@ Buffs: {
 		DisplayName: Солнечная Ярость
 		Description: Вы наполнены энергией солнечного божества
 	}
+
+	BleedingBloodDebuff: {
+		Description: Вы теряете слишком много крови...
+		DisplayName: Кровавое изливание
+	}
 }
 
 Projectiles: {
@@ -461,6 +466,9 @@ NPCs: {
 		DisplayName: Глубоководная Акула
 		BossChecklistIntegration.SpawnInfo: Условия появления неизвестны
 	}
+
+	BleedingSlime.DisplayName: Истекающий слизень
+	EyeParasite.DisplayName: Глазной паразит
 }
 
 SetBonuses.BloodyAscension:
