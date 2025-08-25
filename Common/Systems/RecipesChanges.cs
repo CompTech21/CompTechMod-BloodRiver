@@ -247,6 +247,13 @@ namespace CompTechMod.Common.Systems
                 .AddIngredient(ItemID.ManaCrystal, 1)
                 .AddTile(TileID.WorkBenches)
                 .Register();
+
+            Recipe.Create(ItemID.LifeFruit)
+                .AddIngredient(ItemID.LifeCrystal, 1)
+                .AddIngredient(ItemID.JungleSpores, 5)
+                .AddIngredient(ItemID.Ectoplasm, 5)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 }
