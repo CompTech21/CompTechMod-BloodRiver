@@ -1,34 +1,37 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CompTechMod.Content.Tiles;
 
 namespace CompTechMod.Content.Items
 {
-    public class BleedingBar : ModItem
+    public class BloodyAltarItem : ModItem
     {
         public override void SetStaticDefaults()
         {
-            // Название и описание задаются через локализацию
+
         }
 
         public override void SetDefaults()
         {
-            Item.width = 32;
-            Item.height = 24;
+            Item.width = 50;
+            Item.height = 32;
             Item.maxStack = 9999;
-            Item.value = Item.sellPrice(gold: 8);
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
             Item.rare = ItemRarityID.Red;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.useTime = 10;
-            Item.useAnimation = 15;
-            Item.autoReuse = true;
             Item.consumable = true;
+            Item.value = 0;
+            Item.createTile = ModContent.TileType<BloodyAltar>();
         }
 
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<BleedingOreItem>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<BleedingBar>(), 5);
             recipe.AddTile(TileID.LunarCraftingStation); // Ancient Manipulator
             recipe.Register();
         }

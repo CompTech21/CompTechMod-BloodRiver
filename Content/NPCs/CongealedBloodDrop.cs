@@ -29,6 +29,10 @@ namespace CompTechMod.Content.NPCs
                 case NPCID.BloodNautilus:
                     npcLoot.Add(ItemDropRule.Common(itemType, 1, 30, 36)); // 100%, 30-35 штук
                     break;
+
+                case NPCID.Clown:
+                    npcLoot.Add(ItemDropRule.Common(itemType, 1, 10, 16)); // 100%, 10-15 штук
+                    break;
             }
         }
     }

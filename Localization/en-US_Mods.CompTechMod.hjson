@@ -403,6 +403,26 @@ Items: {
 			[c/2ba2fc:- Holding it gives you chills. But the effect is worth it - ]
 			'''
 	}
+
+	RainbowJewel: {
+		DisplayName: Rainbow Jewel
+		Tooltip:
+			'''
+			Summons Empress of Light when used
+			Enters a rage during day
+			Does not get consumed
+			'''
+	}
+
+	BloodyAltarItem: {
+		DisplayName: Bloody Altar
+		Tooltip:
+			'''
+			Summons a Bleeding Core when donating blood at the altar
+
+			[c/b30707:- The Ancient Core is watching you - ]
+			'''
+	}
 }
 
 Buffs: {
@@ -435,6 +455,7 @@ Projectiles: {
 	GelSlicerSwing.DisplayName: Gel Slicer Swing
 	GelSlicerProj.DisplayName: Gel Slicer Proj
 	EyeSpearProj.DisplayName: Eye Spear Proj
+	BloodBlast.DisplayName: Blood Blast
 }
 
 Configs: {
@@ -468,6 +489,7 @@ NPCs: {
 
 	BleedingSlime.DisplayName: Bleeding Slime
 	EyeParasite.DisplayName: Eye Parasite
+	ExpiringCore.DisplayName: Bleeding Core
 }
 
 SetBonuses.BloodyAscension:
