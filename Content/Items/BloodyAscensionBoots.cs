@@ -29,6 +29,7 @@ namespace CompTechMod.Content.Items
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CongealedBlood>(), 150)
                 .AddIngredient(ModContent.ItemType<BleedingBar>(), 30)
+                .AddIngredient(ModContent.ItemType<BloodEssence>(), 10)
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }

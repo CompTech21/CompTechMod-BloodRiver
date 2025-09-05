@@ -31,8 +31,8 @@ namespace CompTechMod.Content.NPCs
             NPC.width = 64;
             NPC.height = 64;
             NPC.damage = Main.expertMode ? (Main.masterMode ? 400 : 300) : 200;
-            NPC.defense = Main.expertMode ? (Main.masterMode ? 70 : 50) : 30;
-            NPC.lifeMax = Main.expertMode ? (Main.masterMode ? 1100000 : 900000) : 250000;
+            NPC.defense = Main.expertMode ? (Main.masterMode ? 65 : 45) : 25;
+            NPC.lifeMax = Main.expertMode ? (Main.masterMode ? 750000 : 400000) : 250000;
             NPC.knockBackResist = 0f;
             NPC.value = Item.buyPrice(0, 0, 0, 0);
             NPC.noGravity = true;
@@ -222,12 +222,13 @@ namespace CompTechMod.Content.NPCs
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.PlatinumCoin, 1, 2, 2));
+            npcLoot.Add(ItemDropRule.Common(ItemID.GreaterHealingPotion, 1, 5, 15));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentSolar, 1, 20, 25));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentVortex, 1, 20, 25));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentNebula, 1, 20, 25));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentStardust, 1, 20, 25));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BleedingBar>(), 1, 10, 15));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CongealedBlood>(), 1, 100, 150));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodEssence>(), 1, 4, 8));
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry entry)

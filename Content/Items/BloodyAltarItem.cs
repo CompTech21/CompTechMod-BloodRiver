@@ -31,7 +31,8 @@ namespace CompTechMod.Content.Items
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<BleedingBar>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<BleedingBar>(), 10);
+            recipe.AddIngredient(ItemID.SpookyWood, 25);
             recipe.AddTile(TileID.LunarCraftingStation); // Ancient Manipulator
             recipe.Register();
         }

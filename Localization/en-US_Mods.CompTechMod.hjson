@@ -297,16 +297,16 @@ Items: {
 		DisplayName: Heart Source
 		Tooltip:
 			'''
-			Reduces damage taken by 40%
-			Increases maximum health by 70
+			Reduces damage taken by 70%
+			Increases maximum health by 100
 			Increases maximum mana by 500
-			Increases defense by 50
-			Considerably increases movement speed by 66%
-			Increases flight time by 75%
-			Increases attack speed by 43%
-			Increases overall damage by 150%
-			Increases armor penetration by 50
-			Increases critical chance by 66%
+			Increases defense by 100
+			Considerably increases movement speed by 150%
+			Increases flight time by 300%
+			Increases attack speed by 120%
+			Increases overall damage by 300%
+			Increases armor penetration by 100
+			Increases critical chance by 100%
 			Grants immunity to all debuffs
 			Grants immunity to knockback
 
@@ -421,6 +421,16 @@ Items: {
 			Summons a Bleeding Core when donating blood at the altar
 
 			[c/b30707:- The Ancient Core is watching you - ]
+			'''
+	}
+
+	BloodEssence: {
+		DisplayName: Bloody Essence
+		Tooltip:
+			'''
+			Essence of Ancient Curse
+
+			Used as a material for crafting powerful equipment
 			'''
 	}
 }

@@ -20,21 +20,22 @@ namespace CompTechMod.Content.Items
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Generic) += 1.5f;
-            player.GetCritChance(DamageClass.Generic) += 66f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.43f;
-            player.GetAttackSpeed(DamageClass.Ranged) += 0.43f;
-            player.GetAttackSpeed(DamageClass.Magic) += 0.43f;
+            player.GetDamage(DamageClass.Generic) += 3f;
+            player.GetCritChance(DamageClass.Generic) += 100f;
+            player.GetAttackSpeed(DamageClass.Melee) += 1.2f;
+            player.GetAttackSpeed(DamageClass.Ranged) += 1.2f;
+            player.GetAttackSpeed(DamageClass.Magic) += 1.2f;
 
-            player.moveSpeed += 0.66f;
-            player.maxRunSpeed += 0.66f;
+            player.moveSpeed += 1.5f;
+            player.maxRunSpeed += 1.5f;
 
-            player.wingTimeMax = (int)(player.wingTimeMax * 1.75f);
+            player.wingTimeMax = (int)(player.wingTimeMax * 3f);
 
-            player.statDefense += 50;
-            player.statLifeMax2 += 70;
+            player.statDefense += 100;
+            player.statLifeMax2 += 100;
             player.statManaMax2 += 500;
-            player.GetArmorPenetration(DamageClass.Generic) += 50;
+            player.endurance += 0.70f;
+            player.GetArmorPenetration(DamageClass.Generic) += 100;
 
             player.buffImmune[BuffID.Bleeding] = true;
             player.buffImmune[BuffID.Poisoned] = true;
@@ -73,13 +74,14 @@ namespace CompTechMod.Content.Items
             recipe.AddIngredient(ItemID.AnkhShield);
             recipe.AddIngredient(ItemID.LunarBar, 40);
             recipe.AddIngredient(ModContent.ItemType<BleedingBar>(), 40);
-            recipe.AddIngredient(ItemID.LifeFruit, 14);
+            recipe.AddIngredient(ItemID.LifeFruit, 20);
             recipe.AddIngredient(ItemID.ManaCrystal, 25);
             recipe.AddIngredient(ModContent.ItemType<CongealedBlood>(), 500);
             recipe.AddIngredient(ItemID.FragmentSolar, 35);
             recipe.AddIngredient(ItemID.FragmentVortex, 35);
             recipe.AddIngredient(ItemID.FragmentNebula, 35);
             recipe.AddIngredient(ItemID.FragmentStardust, 35);
+            recipe.AddIngredient(ModContent.ItemType<BloodEssence>(), 35);
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.Register();
         }
