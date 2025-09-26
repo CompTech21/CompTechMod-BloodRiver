@@ -27,7 +27,7 @@ namespace CompTechMod.Common.Systems
                 Mod,
                 "ExpiringCore",
                 19.0f,
-                (Func<bool>)(() => NPC.downedMoonlord),
+                (Func<bool>)(() => CompTechModSystem.downedExpiringCore),
                 ModContent.NPCType<Content.NPCs.ExpiringCore>(),
                 new Dictionary<string, object>()
                 {

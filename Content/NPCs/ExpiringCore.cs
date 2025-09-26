@@ -242,11 +242,6 @@ namespace CompTechMod.Content.NPCs
         public override void OnKill()
         {
             CompTechModSystem.downedExpiringCore = true;
-
-            if (!NPC.downedMoonlord)
-            {
-                NPC.SetEventFlagCleared(ref NPC.downedMoonlord, -1);
-            }
         }
     }
 }
