@@ -433,6 +433,15 @@ Items: {
 			Used as a material for crafting powerful equipment
 			'''
 	}
+
+	FragmentOfTorment: {
+		DisplayName: Fragment Of Torment
+		Tooltip:
+			'''
+			Unleashes Eternal Suffering
+			[c/b30707:Can only be used in Master mode]
+			'''
+	}
 }
 
 Buffs: {
@@ -500,6 +509,7 @@ NPCs: {
 	BleedingSlime.DisplayName: Bleeding Slime
 	EyeParasite.DisplayName: Eye Parasite
 	ExpiringCore.DisplayName: Bleeding Core
+	ImprovedKingSlime.DisplayName: Improved King Slime
 }
 
 SetBonuses.BloodyAscension:
@@ -516,3 +526,5 @@ Messages: {
 
 Tooltips.NotConsumed: Does not get consumed
 Tiles.BleedingOre.MapEntry: Bleeding Ore
+EternalSuffering: Eternal Suffering
+EternalSufferingActivated: Eternal Suffering is on. Good luck...

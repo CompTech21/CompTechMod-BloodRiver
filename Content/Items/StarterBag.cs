@@ -15,7 +15,7 @@ namespace CompTechMod.Content.Items
         {
             Item.width = 26;
             Item.height = 28;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.rare = ItemRarityID.White;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useTime = 20;
@@ -40,6 +40,7 @@ namespace CompTechMod.Content.Items
 
             // Сапоги
             player.QuickSpawnItem(null, ModContent.ItemType<BootsOfFrivolity>(), 1);
+
 
             // Семена порчи
             player.QuickSpawnItem(null, ItemID.CorruptSeeds, 25);

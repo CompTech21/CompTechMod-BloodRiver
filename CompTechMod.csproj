@@ -15,5 +15,6 @@
 	<ItemGroup>
 	  <Compile Remove="Content\Items\SoulGem.cs" />
 	</ItemGroup>
+	
 
 </Project>

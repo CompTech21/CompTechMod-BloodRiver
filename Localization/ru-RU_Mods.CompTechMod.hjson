@@ -434,6 +434,15 @@ Items: {
 			Служит материалом для создания мощного снаряжения 
 			'''
 	}
+
+	FragmentOfTorment: {
+		DisplayName: Осколок мучений
+		Tooltip:
+			'''
+			Включает Вечные Страдания
+			[c/b30707:Можно использовать только в режиме Мастера]
+			'''
+	}
 }
 
 Buffs: {
@@ -501,6 +510,7 @@ NPCs: {
 	BleedingSlime.DisplayName: Истекающий слизень
 	EyeParasite.DisplayName: Глазной паразит
 	ExpiringCore.DisplayName: Истекающее Ядро
+	// ImprovedKingSlime.DisplayName: Improved King Slime
 }
 
 SetBonuses.BloodyAscension:
@@ -517,3 +527,5 @@ Messages: {
 
 Tooltips.NotConsumed: Не расходуется
 Tiles.BleedingOre.MapEntry: Истекающая руда
+EternalSuffering: Вечные Страдания
+EternalSufferingActivated: Вечные Страдания включены. Удачи...
