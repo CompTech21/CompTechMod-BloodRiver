@@ -7,12 +7,20 @@ namespace CompTechMod.Content.NPCs
 {
     public class CreeperLootEdit : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-        {
-            if (npc.type == NPCID.Creeper)
-            {
-                // Убираем образцы ткани
-                npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ItemID.TissueSample);
+                public override void OnKill(NPC npc)
+                {
+                    if (npc.type == NPCID.Creeper)
+                    {
+                        npc.value = 0;
+
+                        for (int i = 0; i < Main.item.Length; i++)
+                        {
+                            Item item = Main.item[i];
+                            if (item.active && (item.type == ItemID.CrimtaneOre || item.type == ItemID.TissueSample))
+                            {
+                                item.active = false;
+                            }
+                }
             }
         }
     }

@@ -482,12 +482,12 @@ Configs: {
 		DisplayName: Game Config
 
 		IncreaseBossHealth: {
-			Label: Increase Boss HP by 50%
+			Label: Increase Boss HP
 			Tooltip: Recommended by developers
 		}
 
 		IncreaseMobHealth: {
-			Label: Increase Mob HP by 100%
+			Label: Increase Mob HP
 			Tooltip: Recommended by developers
 		}
 
@@ -509,7 +509,6 @@ NPCs: {
 	BleedingSlime.DisplayName: Bleeding Slime
 	EyeParasite.DisplayName: Eye Parasite
 	ExpiringCore.DisplayName: Bleeding Core
-	ImprovedKingSlime.DisplayName: Improved King Slime
 }
 
 SetBonuses.BloodyAscension:

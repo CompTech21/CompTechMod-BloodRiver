@@ -483,12 +483,12 @@ Configs: {
 		DisplayName: Конфигурация игры
 
 		IncreaseBossHealth: {
-			Label: Увеличение здоровья боссов на 50%
+			Label: Увеличение здоровья боссов
 			Tooltip: Рекомендуется разработчиками мода
 		}
 
 		IncreaseMobHealth: {
-			Label: Увеличение здоровья мобов на 100%
+			Label: Увеличение здоровья мобов
 			Tooltip: Рекомендуется разработчиками мода
 		}
 
@@ -510,7 +510,6 @@ NPCs: {
 	BleedingSlime.DisplayName: Истекающий слизень
 	EyeParasite.DisplayName: Глазной паразит
 	ExpiringCore.DisplayName: Истекающее Ядро
-	// ImprovedKingSlime.DisplayName: Improved King Slime
 }
 
 SetBonuses.BloodyAscension:
