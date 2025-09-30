@@ -23,6 +23,11 @@ namespace CompTechMod.Common.Systems
             {
                 shop.Add(ItemID.JungleRose, Array.Empty<Condition>());
             }
+
+            if (shop.NpcType == NPCID.Wizard)
+            {
+                shop.Add(ItemID.RodofDiscord, Array.Empty<Condition>());
+            }
         }
     }
 }

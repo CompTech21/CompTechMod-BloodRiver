@@ -55,7 +55,7 @@ namespace CompTechMod.Content.NPCs
                     dashDir.Normalize();
 
                     // Сильное ускорение, как в Infernum
-                    npc.velocity = Vector2.Lerp(npc.velocity, dashDir * 8f, 0.08f);
+                    npc.velocity = Vector2.Lerp(npc.velocity, dashDir * 10f, 0.08f);
                 }
 
                 // ===========================================================

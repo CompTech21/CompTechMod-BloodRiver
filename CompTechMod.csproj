@@ -1,20 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<!-- Import tModLoader mod properties -->
-	<Import Project="..\tModLoader.targets" />
+  <!-- Подключаем свойства tModLoader -->
+  <Import Project="..\tModLoader.targets" />
 
-	<!-- General -->
-	<PropertyGroup>
-		
-	</PropertyGroup>
+  <!-- Общие параметры -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
 
-	<!-- References -->
-	<ItemGroup>
-		
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Remove="Content\Items\SoulGem.cs" />
-	</ItemGroup>
-	
+  <!-- Исходники -->
+  <ItemGroup>
+    <Compile Remove="Content\Items\SoulGem.cs" />
+  </ItemGroup>
+
+  <!-- Ссылки -->
+  <ItemGroup>
+    <!-- Luminance -->
+    <Reference Include="Luminance">
+      <HintPath>..\ModAssemblies\Luminance_v1.0.12.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

@@ -20,6 +20,9 @@ namespace CompTechMod.Content.Items
 
             if (item.type == ItemID.GoldenKey)
                 item.value = Item.buyPrice(0, 7, 0, 0); // 7 золотых
+
+            if (item.type == ItemID.RodofDiscord)
+                item.value = Item.buyPrice(0, 50, 0, 0); // 50 золотых
         }
     }
 }

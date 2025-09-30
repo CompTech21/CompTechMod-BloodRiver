@@ -42,6 +42,9 @@ namespace CompTechMod.Content.Items
             player.QuickSpawnItem(null, ModContent.ItemType<BootsOfFrivolity>(), 1);
 
 
+            player.QuickSpawnItem(null, ModContent.ItemType<DontDoThis>(), 1);
+
+
             // Семена порчи
             player.QuickSpawnItem(null, ItemID.CorruptSeeds, 25);
 
