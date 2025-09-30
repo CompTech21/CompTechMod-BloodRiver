@@ -9,10 +9,10 @@ namespace CompTechMod.Content.Items
     {
         public override void SetDefaults()
         {
-            Item.damage = 36;
+            Item.damage = 31;
             Item.DamageType = DamageClass.Melee;
-            Item.width = 80;
-            Item.height = 80;
+            Item.width = 64;
+            Item.height = 64;
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Swing;

@@ -12,6 +12,7 @@
 [i:5337] Special Thanks:
 
 [i:5337] Odysseus of Ithaca (Spriter)
+[i:5337] DFDR (Spriter)
 [i:5337] W_elexis_W (Help with code)
 
 [i:549] Development Status:

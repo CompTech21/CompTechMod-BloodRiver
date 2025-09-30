@@ -452,6 +452,30 @@ Items: {
 			[c/b30707:- Not for the faint of heart -]
 			'''
 	}
+
+	OceanRing: {
+		DisplayName: Ocean Ring
+		Tooltip:
+			'''
+			Increases health regeneration by 1
+			Increases defense by 1
+			Increases maximum health by 5
+			If the wearer stands underwater, their oxygen is restored
+			Emits a small amount of light while underwater
+			'''
+	}
+
+	TalismanOfAwakening: {
+		DisplayName: Talisman Of Awakening
+		Tooltip:
+			'''
+			While holding this item, your health regeneration increases by 3
+			Your defense is reduced by 20
+			Also removes all debuffs when used
+
+			[c/8333de:- The best choice for those who think they can survive anything -]
+			'''
+	}
 }
 
 Buffs: {
