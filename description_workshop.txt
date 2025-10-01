@@ -12,6 +12,8 @@ Current Features:
 Special Thanks:
 
 Odysseus of Ithaca (Spriter)
+DFDR (Spriter)
+W_elexis_W (Help with code)
 
 Development Status:
 This mod is currently in Alpha and will receive ongoing updates. Your support helps improve Blood River![quote=tModLoader CompTechMod]
