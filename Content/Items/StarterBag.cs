@@ -33,7 +33,7 @@ namespace CompTechMod.Content.Items
             player.QuickSpawnItem(null, ItemID.LifeCrystal, 1);
 
             // Кристалл маны (Mana Crystal)
-            player.QuickSpawnItem(null, ItemID.ManaCrystal, 1);
+            player.QuickSpawnItem(null, ItemID.ManaCrystal, 2);
 
             // Маска солнца (Sun Mask)
             player.QuickSpawnItem(null, ItemID.SunMask, 1);
@@ -52,6 +52,14 @@ namespace CompTechMod.Content.Items
             player.QuickSpawnItem(null, ItemID.CrimsonSeeds, 25);
 
             // Золотая монета
+            player.QuickSpawnItem(null, ItemID.GoldCoin, 1);
+
+            player.QuickSpawnItem(null, ItemID.CopperHammer, 1);
+
+            player.QuickSpawnItem(null, ItemID.LesserHealingPotion, 5);
+
+            player.QuickSpawnItem(null, ItemID.Rope, 100);
+
             player.QuickSpawnItem(null, ItemID.GoldCoin, 1);
         }
     }

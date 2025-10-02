@@ -22,11 +22,11 @@ namespace CompTechMod.Common.Systems
                 item.axe = 9;
             }
 
-            if (item.type == ItemID.WoodenHammer)
+            if (item.type == ItemID.CopperHammer)
             {
                 item.useTime = 19;
-                item.useAnimation = 29;
-                item.hammer = 35;
+                item.useAnimation = 19;
+                item.hammer = 45;
             }
         }
     }

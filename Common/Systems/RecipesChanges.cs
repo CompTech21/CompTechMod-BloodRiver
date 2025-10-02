@@ -84,13 +84,6 @@ namespace CompTechMod.Common.Systems
                 .AddTile(TileID.Anvils)
                 .Register();
 
-            Recipe.Create(ItemID.RodofDiscord)
-                .AddIngredient(ItemID.IceRod)
-                .AddIngredient(ItemID.SoulofLight, 50)
-                .AddIngredient(ItemID.ChaosElementalBanner, 4)
-                .AddTile(TileID.Solidifier)
-                .Register();
-
             Recipe.Create(ItemID.EnchantedSword)
                 .AddIngredient(ItemID.GoldBroadsword)
                 .AddIngredient(ItemID.FallenStar, 5)
@@ -224,8 +217,8 @@ namespace CompTechMod.Common.Systems
                 .Register();
 
             Recipe.Create(ItemID.MagicConch)
-                .AddIngredient(ItemID.MagicConch, 1)
-                .AddIngredient(ItemID.WhitePearl, 3)
+                .AddIngredient(ItemID.ShellPileBlock, 20)
+                .AddIngredient(ItemID.WhitePearl, 2)
                 .AddTile(TileID.Anvils)
                 .Register();
 
@@ -253,6 +246,12 @@ namespace CompTechMod.Common.Systems
                 .AddIngredient(ItemID.JungleSpores, 5)
                 .AddIngredient(ItemID.Ectoplasm, 5)
                 .AddTile(TileID.MythrilAnvil)
+                .Register();
+
+            Recipe.Create(ItemID.CreativeWings)
+                .AddIngredient(ItemID.Cloud, 40)
+                .AddIngredient(ItemID.Feather, 10)
+                .AddTile(TileID.Anvils)
                 .Register();
         }
     }

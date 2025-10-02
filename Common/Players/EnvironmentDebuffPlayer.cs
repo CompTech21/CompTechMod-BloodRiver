@@ -19,6 +19,11 @@ namespace CompTechMod.Common.Players
             {
                 Player.AddBuff(24, 2);
             }
+
+            if (Player.ZoneCrimson)
+            {
+                Player.AddBuff(69, 2);
+            }
         }
     }
 }
