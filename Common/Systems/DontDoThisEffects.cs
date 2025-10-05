@@ -47,7 +47,7 @@ namespace CompTechMod.Common.Systems
                 player.statDefense *= 0.5f;
                 player.GetDamage(DamageClass.Generic) *= 0.5f;
                 player.moveSpeed *= 0.5f;
-                player.pickSpeed *= 0.2f;
+                player.pickSpeed *= 0.01f;
                 if (player.extraAccessorySlots > 0)
                     player.extraAccessorySlots--;
 
@@ -80,23 +80,6 @@ namespace CompTechMod.Common.Systems
                     Main.npc[npcIndex].friendly = false;
                 }
             }
-        }
-    }
-
-    public class DontDoThisItemGlobal : GlobalItem
-    {
-        public override bool CanUseItem(Item item, Player player)
-        {
-            if (!CompWorld.DontDoThisMode) return true;
-
-            if (item.DamageType != DamageClass.Default || item.pick > 0 || item.axe > 0 || item.hammer > 0)
-                if (Main.rand.NextFloat() < 0.02f)
-                {
-                    item.TurnToAir();
-                    return false;
-                }
-
-            return true;
         }
     }
 

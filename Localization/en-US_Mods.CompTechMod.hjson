@@ -228,8 +228,8 @@ Items: {
 		DisplayName: Mastery Emblem
 		Tooltip:
 			'''
-			Increases all damage by 18%
-			Increases critical chance by 14%
+			Increases all damage by 23%
+			Increases critical chance by 16%
 			'''
 	}
 

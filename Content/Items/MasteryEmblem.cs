@@ -19,16 +19,16 @@ namespace CompTechMod.Content.Items
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             // Урон
-            player.GetDamage(DamageClass.Melee) += 0.18f;
-            player.GetDamage(DamageClass.Ranged) += 0.18f;
-            player.GetDamage(DamageClass.Magic) += 0.18f;
-            player.GetDamage(DamageClass.Summon) += 0.18f;
+            player.GetDamage(DamageClass.Melee) += 0.23f;
+            player.GetDamage(DamageClass.Ranged) += 0.23f;
+            player.GetDamage(DamageClass.Magic) += 0.23f;
+            player.GetDamage(DamageClass.Summon) += 0.23f;
 
             // Крит шанс
-            player.GetCritChance(DamageClass.Melee) += 14f;
-            player.GetCritChance(DamageClass.Ranged) += 14f;
-            player.GetCritChance(DamageClass.Magic) += 14f;
-            player.GetCritChance(DamageClass.Summon) += 14f;
+            player.GetCritChance(DamageClass.Melee) += 16f;
+            player.GetCritChance(DamageClass.Ranged) += 16f;
+            player.GetCritChance(DamageClass.Magic) += 16f;
+            player.GetCritChance(DamageClass.Summon) += 16f;
         }
 
         public override void AddRecipes()

@@ -18,7 +18,7 @@ namespace CompTechMod.Content.Items
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            // +12% урон ко всем видам
+            // +18% урон ко всем видам
             player.GetDamage(DamageClass.Melee) += 0.18f;
             player.GetDamage(DamageClass.Ranged) += 0.18f;
             player.GetDamage(DamageClass.Magic) += 0.18f;
