@@ -19,20 +19,17 @@ namespace CompTechMod.Common.Systems
         {
             if (!CompWorld.DontDoThisMode) return;
 
-            // Ночь чуть быстрее
             if (!Main.dayTime)
-            {
                 Main.bloodMoon = true;
-                Main.time += 0.7;
-            }
 
-            // Гарантированный спавн Dungeon Guardian при входе
             if (!guardiansSpawnedOnJoin)
             {
                 guardiansSpawnedOnJoin = true;
                 foreach (Player player in Main.player)
+                {
                     if (player.active)
                         SpawnGuardians(player, 6);
+                }
             }
         }
 
@@ -44,10 +41,21 @@ namespace CompTechMod.Common.Systems
             {
                 if (!player.active) continue;
 
+                var modPlayer = player.GetModPlayer<DontDoThisGlobalPlayer>();
+
+                // если на игроке "проклятие бесконечной смерти"
+                if (modPlayer.endlessDeath)
+                {
+                    if (!player.dead)
+                    {
+                        player.KillMe(PlayerDeathReason.ByCustomReason($"{player.name} shouldn't have returned..."), 9999.0, 0, false);
+                    }
+                    continue;
+                }
+
                 player.statDefense *= 0.5f;
                 player.GetDamage(DamageClass.Generic) *= 0.5f;
-                player.moveSpeed *= 0.5f;
-                player.pickSpeed *= 0.01f;
+                player.moveSpeed *= 0.4f;
                 if (player.extraAccessorySlots > 0)
                     player.extraAccessorySlots--;
 
@@ -105,33 +113,52 @@ namespace CompTechMod.Common.Systems
             ProjectileID.Obelisk
         };
 
-        private bool tombstonesSpawned = false; // новый флаг
+        public bool tombstonesSpawned = false;
+        public bool endlessDeath = false;
+
+        public override void OnEnterWorld()
+        {
+            if (!CompWorld.DontDoThisMode) return;
+
+            // шанс 1% активировать "бесконечную смерть"
+            if (Main.rand.NextFloat() < 0.01f)
+            {
+                endlessDeath = true;
+                Main.NewText($"{Player.name} brought a curse upon himself...", Color.Red);
+            }
+        }
 
         public override void PreUpdate()
         {
             if (!CompWorld.DontDoThisMode) return;
 
+            if (endlessDeath)
+            {
+                // убиваем каждый тик, если проклятие активно
+                if (!Player.dead)
+                {
+                    Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} can't live."), 9999.0, 0, false);
+                }
+                return;
+            }
+
             if (Player.dead && !tombstonesSpawned)
             {
                 SpawnTombstones();
-                tombstonesSpawned = true; // помечаем, что уже спавнили
+                tombstonesSpawned = true;
             }
 
-            // Сбрасываем флаг, когда игрок возрождается
             if (!Player.dead && tombstonesSpawned)
-            {
                 tombstonesSpawned = false;
-            }
         }
 
         public void SpawnTombstones()
         {
-            float radius = 128f; // максимальное смещение от игрока
+            float radius = 128f;
             for (int i = 0; i < 5; i++)
             {
-                // равномерное распределение по кругу
                 float angle = MathHelper.TwoPi * i / 5f + Main.rand.NextFloat(-0.2f, 0.2f);
-                Vector2 offset = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * (Main.rand.NextFloat(64f, radius));
+                Vector2 offset = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * Main.rand.NextFloat(64f, radius);
                 Vector2 pos = Player.Center + offset;
 
                 int projType = tombstoneProjectiles[Main.rand.Next(tombstoneProjectiles.Length)];
@@ -160,7 +187,7 @@ namespace CompTechMod.Common.Systems
                 Player player = Main.LocalPlayer;
                 if (player.active && !player.dead)
                 {
-                    player.KillMe(PlayerDeathReason.ByCustomReason(""), 9999.0, 0, false);
+                    player.KillMe(PlayerDeathReason.ByCustomReason($"{player.name} потревожил покой мёртвых."), 9999.0, 0, false);
                     player.GetModPlayer<DontDoThisGlobalPlayer>().SpawnTombstones();
                 }
             }
