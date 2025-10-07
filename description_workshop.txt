@@ -7,6 +7,7 @@ Current Features:
 - 1 New Boss
 - 1 New Ore
 - New AI for vanilla bosses
+- Custom generation
 - Hardcore Mode
 - Hidden Secrets
 

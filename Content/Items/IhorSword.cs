@@ -11,12 +11,12 @@ namespace CompTechMod.Content.Items
         {
             Item.damage = 43;
             Item.DamageType = DamageClass.Melee;
-            Item.width = 80;
-            Item.height = 80;
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.width = 64;
+            Item.height = 64;
+            Item.useTime = 24;
+            Item.useAnimation = 24;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 5;
+            Item.knockBack = 2;
             Item.value = Item.buyPrice(gold: 4);
             Item.rare = ItemRarityID.Pink;
             Item.UseSound = SoundID.Item1;

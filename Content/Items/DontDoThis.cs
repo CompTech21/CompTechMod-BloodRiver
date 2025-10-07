@@ -23,7 +23,7 @@ namespace CompTechMod.Content.Items
         {
             CompWorld.DontDoThisMode = true;
             if (Main.netMode != NetmodeID.Server)
-                Main.NewText("DontDoThis Mode Activated!", 255, 50, 50);
+                Main.NewText("Good Luck!", 255, 50, 50);
             return true;
         }
     }

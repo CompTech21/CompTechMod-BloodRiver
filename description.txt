@@ -7,6 +7,7 @@
 [i:521] 1 New Boss
 [i:521] 1 New Ore
 [i:521] New AI for vanilla bosses
+[i:521] Custom Generation
 [i:521] Hardcore Mode
 [i:521] Hidden Secrets
 

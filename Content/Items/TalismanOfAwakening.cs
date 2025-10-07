@@ -50,7 +50,7 @@ namespace CompTechMod.Content.Items
                     // Звук при использовании (раз в цикл)
                     if (player.itemAnimation == player.itemAnimationMax - 1)
                     {
-                        Terraria.Audio.SoundEngine.PlaySound(SoundID.Item21, player.position);
+                        Terraria.Audio.SoundEngine.PlaySound(SoundID.Item15, player.position);
                     }
 
                     // -20 к защите
@@ -71,6 +71,16 @@ namespace CompTechMod.Content.Items
                     }
                 }
             }
+        }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ModContent.ItemType<BrokenAnkhFragment>(), 1);
+            recipe.AddIngredient(ItemID.AntlionMandible, 15);
+            recipe.AddIngredient(ItemID.Bone, 55);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.Register();
         }
     }
 }

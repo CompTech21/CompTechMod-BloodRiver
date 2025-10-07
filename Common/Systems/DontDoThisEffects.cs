@@ -43,13 +43,11 @@ namespace CompTechMod.Common.Systems
 
                 var modPlayer = player.GetModPlayer<DontDoThisGlobalPlayer>();
 
-                // если на игроке "проклятие бесконечной смерти"
+                // "Бесконечная смерть"
                 if (modPlayer.endlessDeath)
                 {
                     if (!player.dead)
-                    {
                         player.KillMe(PlayerDeathReason.ByCustomReason($"{player.name} shouldn't have returned..."), 9999.0, 0, false);
-                    }
                     continue;
                 }
 
@@ -93,13 +91,40 @@ namespace CompTechMod.Common.Systems
 
     public class DontDoThisGlobalNPC : GlobalNPC
     {
-        public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.townNPC;
+        // флаг для проверки, что хп уже увеличено
+        private bool scaled = false;
+
+        public override bool InstancePerEntity => true; // ✅ Исправление
+
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (!CompWorld.DontDoThisMode) return;
+            if (scaled) return;
+            scaled = true;
+
+            // Боссы ×3
+            if (npc.boss)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 3f);
+                npc.life = npc.lifeMax;
+            }
+            // Обычные враждебные мобы ×5
+            else if (!npc.friendly && !npc.townNPC && npc.lifeMax > 5)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 5f);
+                npc.life = npc.lifeMax;
+            }
+        }
 
         public override void AI(NPC npc)
         {
             if (!CompWorld.DontDoThisMode) return;
-            npc.friendly = false;
-            npc.target = npc.FindClosestPlayer();
+
+            if (npc.townNPC)
+            {
+                npc.friendly = false;
+                npc.target = npc.FindClosestPlayer();
+            }
         }
     }
 
@@ -120,7 +145,6 @@ namespace CompTechMod.Common.Systems
         {
             if (!CompWorld.DontDoThisMode) return;
 
-            // шанс 1% активировать "бесконечную смерть"
             if (Main.rand.NextFloat() < 0.01f)
             {
                 endlessDeath = true;
@@ -134,11 +158,8 @@ namespace CompTechMod.Common.Systems
 
             if (endlessDeath)
             {
-                // убиваем каждый тик, если проклятие активно
                 if (!Player.dead)
-                {
                     Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} can't live."), 9999.0, 0, false);
-                }
                 return;
             }
 

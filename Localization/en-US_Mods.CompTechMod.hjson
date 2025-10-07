@@ -444,12 +444,14 @@ Items: {
 	}
 
 	DontDoThis: {
-		DisplayName: DON'T DO THIS
+		DisplayName: REALITY ENCRYPTION MODULE (REM)
 		Tooltip:
 			'''
-			An item that will make your game a living hell
+			Increases the health of enemies and bosses several times
+			Their intelligence becomes higher
+			And more complex mechanics are added
 
-			[c/b30707:- Not for the faint of heart -]
+			[c/b30707:- You know who to blame for your suffering -]
 			'''
 	}
 
@@ -475,6 +477,11 @@ Items: {
 
 			[c/8333de:- The best choice for those who think they can survive anything -]
 			'''
+	}
+
+	BrokenAnkhFragment: {
+		DisplayName: Broken Ankh Fragment
+		Tooltip: A fragment of something truly useful
 	}
 }
 
