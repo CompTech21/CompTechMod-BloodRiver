@@ -105,25 +105,14 @@ namespace CompTechMod.Common.Systems
             // Боссы ×3
             if (npc.boss)
             {
-                npc.lifeMax = (int)(npc.lifeMax * 3f);
+                npc.lifeMax = (int)(npc.lifeMax * 2.5f);
                 npc.life = npc.lifeMax;
             }
             // Обычные враждебные мобы ×5
             else if (!npc.friendly && !npc.townNPC && npc.lifeMax > 5)
             {
-                npc.lifeMax = (int)(npc.lifeMax * 5f);
+                npc.lifeMax = (int)(npc.lifeMax * 3.5f);
                 npc.life = npc.lifeMax;
-            }
-        }
-
-        public override void AI(NPC npc)
-        {
-            if (!CompWorld.DontDoThisMode) return;
-
-            if (npc.townNPC)
-            {
-                npc.friendly = false;
-                npc.target = npc.FindClosestPlayer();
             }
         }
     }

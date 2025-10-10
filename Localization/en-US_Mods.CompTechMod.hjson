@@ -551,19 +551,10 @@ NPCs: {
 	EyeParasite.DisplayName: Eye Parasite
 	ExpiringCore.DisplayName: Bleeding Core
 
-	Farmer: {
-		DisplayName: Farmer
-
-		TownNPCMood: {
-			Content: Я довольный.
-			NoHome: Терпеть не могу, когда у меня нет дома.
-			FarFromHome: Я слишком далеко от дома.
-			LoveSpace: Я люблю, когда так много пространства.
-			DislikeCrowded: Мне не нравится то, как здесь людно.
-			HateCrowded: Я ненавижу то, как здесь людно.
-			LikeNPC_Princess: Мне нравится {NPCName}.
-			Princess_LovesNPC: Мне нравится {NPCName}.
-		}
+	ClownSlime: {
+		DisplayName: Wark
+		TownNPCMood.Content: meh
+		Census.SpawnCondition: Conditions unknown
 	}
 }
 

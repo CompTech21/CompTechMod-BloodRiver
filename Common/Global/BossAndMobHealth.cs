@@ -14,12 +14,12 @@ namespace CompTechMod.Common.Global
 
             if (npc.boss && config.IncreaseBossHealth)
             {
-                npc.lifeMax = (int)(npc.lifeMax * 2.3f);
+                npc.lifeMax = (int)(npc.lifeMax * 1.7f);
                 npc.life = npc.lifeMax;
             }
             else if (!npc.boss && !npc.friendly && !npc.townNPC && config.IncreaseMobHealth)
             {
-                npc.lifeMax = (int)(npc.lifeMax * 2.6f);
+                npc.lifeMax = (int)(npc.lifeMax * 2f);
                 npc.life = npc.lifeMax;
             }
         }
