@@ -14,7 +14,7 @@ namespace CompTechMod.Content.Items
 
         public override void SetDefaults()
         {
-            Item.width = 24;
+            Item.width = 32;
             Item.height = 32;
             Item.useTime = 45;
             Item.useAnimation = 45;

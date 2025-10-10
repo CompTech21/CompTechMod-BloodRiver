@@ -9,8 +9,8 @@ namespace CompTechMod.Content.Items
 	{
 		public override void SetDefaults()
 		{
-			Item.width = 36;
-			Item.height = 28;
+			Item.width = 32;
+			Item.height = 22;
 			Item.accessory = true;
 			Item.rare = ItemRarityID.Expert;
 			Item.expert = true;

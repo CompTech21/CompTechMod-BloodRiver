@@ -8,8 +8,8 @@ namespace CompTechMod.Content.Items
 	{
 		public override void SetDefaults()
 		{
-			Item.width = 34;
-			Item.height = 28;
+			Item.width = 32;
+			Item.height = 32;
 			Item.accessory = true;
 			Item.rare = ItemRarityID.White; // Белая редкость
 			Item.value = Item.sellPrice(copper: 14); // 14 медных
@@ -17,8 +17,7 @@ namespace CompTechMod.Content.Items
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.accRunSpeed = 3.7f; // ≈ 16.1 mph ≈ 26 км/ч
-			// Никаких moveSpeed прибавок — иначе скорость станет выше
+			player.accRunSpeed = 3.8f;
 		}
 	}
 }

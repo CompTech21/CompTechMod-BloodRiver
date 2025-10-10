@@ -69,7 +69,7 @@ Items: {
 			Permanently increases your HP by 25
 			Can only be used once
 
-			[c/E44477:- Straight from Celeste -]
+			[c/E44477:- From the distant lands of Celeste -]
 			'''
 	}
 
@@ -116,7 +116,7 @@ Items: {
 	}
 
 	BootsOfFrivolity: {
-		DisplayName: Boots Of Frivolity
+		DisplayName: Adventurer's Boots
 		Tooltip:
 			'''
 			The worst boots of all
