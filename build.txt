@@ -1,4 +1,4 @@
 displayName = Blood River
 author = CompTech21
-version = 1.2.4.3
+version = 1.2.4.4
 modReferences = Luminance, StructureHelper
