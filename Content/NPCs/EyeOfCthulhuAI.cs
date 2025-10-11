@@ -78,7 +78,8 @@ namespace CompTechMod.Content.NPCs
                 for (int i = -1; i <= 1; i++) // теперь 3 снаряда вместо 5
                 {
                     Vector2 dir = Vector2.Normalize(target.Center - npc.Center).RotatedBy(MathHelper.ToRadians(i * 25));
-                    Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, dir * 10f, ProjectileID.DemonSickle, 20, 2f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, dir * 10f, ProjectileID.DemonSickle, 20, 2f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, dir * 18f, ProjectileID.BloodNautilusShot, 20, 2f, Main.myPlayer);
                 }
             }
         }
@@ -93,10 +94,9 @@ namespace CompTechMod.Content.NPCs
                 {
                     for (int i = 0; i < 8; i++)
                     {
-                        float angle = MathHelper.ToRadians(i * 45); // 8 снарядов по кругу
+                        float angle = MathHelper.ToRadians(i * 45); // 6 снарядов по кругу
                         Vector2 dir = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
                         Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, dir * 12f, ProjectileID.DemonSickle, 35, 2f, Main.myPlayer);
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, dir * 10f, ProjectileID.BloodShot, 30, 2f, Main.myPlayer);
                     }
                 }
 

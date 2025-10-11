@@ -39,11 +39,11 @@ namespace CompTechMod.Content.NPCs
                 else
                 {
                     eyeBeamTimer++;
-                    if (eyeBeamTimer >= 420) // каждые 7 сек
+                    if (eyeBeamTimer >= 120) // каждые 2 сек
                     {
                         eyeBeamTimer = 0;
 
-                        int spacing = 160; // расстояние между лазерами
+                        int spacing = 200; // расстояние между лазерами
                         int screenWidth = 1920;
                         int screenHeight = 1080;
 
