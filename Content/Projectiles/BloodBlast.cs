@@ -34,5 +34,11 @@ namespace CompTechMod.Content.Projectiles
                 target.AddBuff(ModContent.BuffType<BleedingBloodDebuff>(), 120); // 2 сек
             }
         }
+
+        public override void AI()
+        {
+            Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,
+            DustID.Blood, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 150, Color.Red, 1.2f);
+        }
     }
 }

@@ -8,18 +8,18 @@ using Terraria.ModLoader;
 using CompTechMod.Content.Projectiles;
 using CompTechMod.Content.Items;
 using CompTechMod.Common.Systems;
+using System;
 
 namespace CompTechMod.Content.NPCs
 {
     [AutoloadBossHead]
     public class ExpiringCore : ModNPC
     {
-        private int phase = 1;
-        private int attackTimer = 0;
-        private int volleyCount = 0;
-
-        private Vector2? pendingTeleport = null;
-        private int teleportTimer = 0;
+        private int phase;
+        private int attackTimer;
+        private float rotationAngle;
+        private Vector2? teleportPos;
+        private int teleportTimer;
 
         public override void SetStaticDefaults()
         {
@@ -28,19 +28,19 @@ namespace CompTechMod.Content.NPCs
 
         public override void SetDefaults()
         {
-            NPC.width = 64;
-            NPC.height = 64;
-            NPC.damage = Main.expertMode ? (Main.masterMode ? 400 : 300) : 200;
-            NPC.defense = Main.expertMode ? (Main.masterMode ? 65 : 45) : 25;
-            NPC.lifeMax = Main.expertMode ? (Main.masterMode ? 750000 : 400000) : 250000;
+            NPC.width = 70;
+            NPC.height = 70;
+            NPC.damage = 150;
+            NPC.defense = 30;
+            NPC.lifeMax = 350000;
             NPC.knockBackResist = 0f;
-            NPC.value = Item.buyPrice(0, 0, 0, 0);
             NPC.noGravity = true;
             NPC.noTileCollide = true;
+            NPC.boss = true;
+            NPC.aiStyle = -1;
+
             NPC.HitSound = SoundID.NPCHit4;
             NPC.DeathSound = SoundID.NPCDeath14;
-            NPC.aiStyle = -1;
-            NPC.boss = true;
             Music = MusicID.Boss5;
         }
 
@@ -50,37 +50,27 @@ namespace CompTechMod.Content.NPCs
             if (!player.active || player.dead)
             {
                 NPC.TargetClosest();
-                if (!player.active || player.dead)
-                {
-                    NPC.velocity.Y -= 0.1f;
-                    if (NPC.timeLeft > 10) NPC.timeLeft = 10;
-                    return;
-                }
+                return;
             }
 
-            // --- Проверка биома ---
-            if (!(player.ZoneCrimson))
-            {
-                // игрок не в багрянце → босс неуязвим
-                NPC.dontTakeDamage = true;
+            // Биом-чек
+            NPC.dontTakeDamage = !player.ZoneCrimson;
 
-                // можно ещё подсветить эффектом
-                Lighting.AddLight(NPC.Center, 1f, 0f, 0f); // красноватое свечение
-            }
-            else
-            {
-                // игрок снова в багрянце → босс уязвим
-                NPC.dontTakeDamage = false;
-            }
-
-            // ФАЗЫ
-            float hpPercent = (float)NPC.life / NPC.lifeMax;
-            if (hpPercent <= 0.25f) phase = 4;
-            else if (hpPercent <= 0.5f) phase = 3;
-            else if (hpPercent <= 0.85f) phase = 2;
-            else phase = 1;
+            // Пульсирующее свечение
+            float pulse = (float)Math.Sin(Main.GameUpdateCount * 0.1f) * 0.5f + 0.5f;
+            Lighting.AddLight(NPC.Center, 1.2f * pulse, 0f, 0f);
 
             attackTimer++;
+            rotationAngle += 0.03f;
+
+            float hp = (float)NPC.life / NPC.lifeMax;
+            phase = hp switch
+            {
+                <= 0.25f => 4,
+                <= 0.5f => 3,
+                <= 0.75f => 2,
+                _ => 1
+            };
 
             switch (phase)
             {
@@ -99,144 +89,156 @@ namespace CompTechMod.Content.NPCs
             }
         }
 
+        // ================= ФАЗЫ =================
+
         private void PhaseOne(Player player)
         {
-            MoveTowards(player.Center, 4f, 0.1f);
+            Hover(player, 240, 4f);
 
-            if (attackTimer % 120 == 0)
-            {
-                ShootRing(player, 4);
-            }
+            if (attackTimer % 90 == 0)
+                RadialShot(6, 7f);
         }
 
         private void PhaseTwo(Player player)
         {
-            MoveAbove(player.Center, 5f);
+            Hover(player, 180, 5f);
 
-            if (attackTimer % 60 == 0)
-            {
-                ShootRing(player, 6);
-                volleyCount++;
-            }
+            if (attackTimer % 120 == 0)
+                SpiralShot(16, 8f);
 
-            if (volleyCount >= 3)
-            {
-                DashAttack(player, 4);
-                volleyCount = 0;
-            }
+            if (attackTimer % 240 == 0)
+                DashWithWarning(player);
         }
 
         private void PhaseThree(Player player)
         {
-            MoveBelow(player.Center, 5f);
+            Orbit(player, 260, 0.03f);
 
-            if (attackTimer % 60 == 0)
-            {
-                ShootRing(player, 6);
-                volleyCount++;
-            }
+            if (attackTimer % 80 == 0)
+                RadialShot(10, 8f);
 
-            if (volleyCount >= 3)
-            {
-                DashAttack(player, 6);
-                volleyCount = 0;
-            }
+            if (attackTimer % 200 == 0)
+                Teleport(player);
         }
 
         private void PhaseFour(Player player)
         {
-            MoveTowards(player.Center, 3f, 0.2f);
+            Orbit(player, 200, 0.06f);
 
-            if (attackTimer % 30 == 0)
+            if (attackTimer % 40 == 0)
+                SpiralShot(20, 9f);
+
+            if (attackTimer % 120 == 0)
+                DashWithWarning(player);
+        }
+
+        // ================= ДВИЖЕНИЕ =================
+
+        private void Hover(Player player, float height, float speed)
+        {
+            Vector2 target = player.Center + new Vector2(0, -height);
+            NPC.velocity = Vector2.Lerp(NPC.velocity, (target - NPC.Center) * 0.05f, 0.08f);
+        }
+
+        private void Orbit(Player player, float radius, float speed)
+        {
+            Vector2 orbitPos = player.Center +
+                new Vector2((float)Math.Cos(rotationAngle), (float)Math.Sin(rotationAngle)) * radius;
+
+            NPC.velocity = (orbitPos - NPC.Center) * speed;
+        }
+
+        // ================= АТАКИ =================
+
+        private void RadialShot(int count, float speed)
+        {
+            for (int i = 0; i < count; i++)
             {
-                ShootRing(player, 6);
+                Vector2 vel = Vector2.UnitX.RotatedBy(MathHelper.TwoPi / count * i) * speed;
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vel,
+                    ModContent.ProjectileType<BloodBlast>(), NPC.damage / 4, 2f);
             }
 
-            // Запускаем телепорт каждые 5 секунд
-            if (attackTimer % 300 == 0 && pendingTeleport == null)
-            {
-                pendingTeleport = player.Center + new Vector2(Main.rand.Next(-400, 401), Main.rand.Next(-400, 401));
-                teleportTimer = 240; // 4 секунды предупреждения
+            SpawnPulseDust();
+        }
 
-                // создаём пыль в точке будущего телепорта
-                for (int i = 0; i < 40; i++)
-                {
-                    Vector2 dustPos = pendingTeleport.Value + Main.rand.NextVector2Circular(50, 50);
-                    Dust.NewDustPerfect(dustPos, DustID.Blood, Main.rand.NextVector2Circular(2, 2), 150, Color.Red, 1.5f).noGravity = true;
-                }
+        private void SpiralShot(int count, float speed)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Vector2 vel = Vector2.UnitX
+                    .RotatedBy(rotationAngle + MathHelper.TwoPi / count * i) * speed;
+
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vel,
+                    ModContent.ProjectileType<BloodBlast>(), NPC.damage / 4, 2f);
             }
 
-            // отсчёт таймера для телепорта
-            if (pendingTeleport != null)
+            SpawnPulseDust();
+        }
+
+        private void DashWithWarning(Player player)
+        {
+            // Предупреждение
+            for (int i = 0; i < 25; i++)
             {
-                teleportTimer--;
-                if (teleportTimer <= 0)
-                {
-                    NPC.Center = pendingTeleport.Value;
-                    pendingTeleport = null;
-                }
+                Dust.NewDustPerfect(NPC.Center,
+                    DustID.Blood,
+                    Main.rand.NextVector2Circular(3, 3),
+                    150,
+                    Color.DarkRed,
+                    1.6f).noGravity = true;
+            }
+
+            SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
+
+            Vector2 dash = (player.Center - NPC.Center).SafeNormalize(Vector2.UnitX) * 35f;
+            NPC.velocity = dash;
+        }
+
+        private void Teleport(Player player)
+        {
+            teleportPos = player.Center + Main.rand.NextVector2Circular(350, 350);
+
+            for (int i = 0; i < 40; i++)
+            {
+                Dust.NewDustPerfect(NPC.Center,
+                    DustID.Blood,
+                    Main.rand.NextVector2Circular(5, 5),
+                    150,
+                    Color.Red,
+                    2f).noGravity = true;
+            }
+
+            NPC.Center = teleportPos.Value;
+        }
+
+        // ================= ЭФФЕКТЫ =================
+
+        private void SpawnPulseDust()
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                Dust.NewDustPerfect(NPC.Center,
+                    DustID.Blood,
+                    Main.rand.NextVector2Circular(2, 2),
+                    150,
+                    Color.Red,
+                    1.4f).noGravity = true;
             }
         }
 
-        private void MoveTowards(Vector2 target, float speed, float inertia)
-        {
-            Vector2 move = target - NPC.Center;
-            float magnitude = move.Length();
-            if (magnitude > speed)
-            {
-                move *= speed / magnitude;
-            }
-            NPC.velocity = (NPC.velocity * (1f - inertia)) + (move * inertia);
-        }
-
-        private void MoveAbove(Vector2 target, float speed)
-        {
-            Vector2 above = target + new Vector2(0, -200);
-            MoveTowards(above, speed, 0.1f);
-        }
-
-        private void MoveBelow(Vector2 target, float speed)
-        {
-            Vector2 below = target + new Vector2(0, 200);
-            MoveTowards(below, speed, 0.1f);
-        }
-
-        private void ShootRing(Player player, int numProjectiles)
-        {
-            for (int i = 0; i < numProjectiles; i++)
-            {
-                Vector2 velocity = Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / numProjectiles * i)) * 8f;
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity, ModContent.ProjectileType<BloodBlast>(), NPC.damage / 4, 2f);
-            }
-        }
-
-        private void DashAttack(Player player, int numProjectiles)
-        {
-            Vector2 dashDir = (player.Center - NPC.Center).SafeNormalize(Vector2.UnitX) * 40f;
-            NPC.velocity = dashDir;
-            ShootRing(player, numProjectiles);
-            ShootRing(player, numProjectiles);
-        }
-
+        // ================= ЛУТ =================
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemID.PlatinumCoin, 1, 2, 2));
-            npcLoot.Add(ItemDropRule.Common(ItemID.GreaterHealingPotion, 1, 5, 15));
+            npcLoot.Add(ItemDropRule.Common(ItemID.PlatinumCoin, 1, 3, 5));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodEssence>(), 1, 4, 8));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CongealedBlood>(), 1, 100, 150));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentSolar, 1, 20, 25));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentVortex, 1, 20, 25));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentNebula, 1, 20, 25));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentStardust, 1, 20, 25));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CongealedBlood>(), 1, 100, 150));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodEssence>(), 1, 4, 8));
-        }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry entry)
-        {
-            entry.Info.AddRange(new IBestiaryInfoElement[]
-            {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundCrimson,
-            });
         }
 
         public override void OnKill()
