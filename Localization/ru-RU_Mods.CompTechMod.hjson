@@ -484,6 +484,15 @@ Items: {
 		DisplayName: Сломанный фрагмент Анха
 		Tooltip: Фрагмент к чему-то действительно полезному
 	}
+
+	BloodCarapace: {
+		DisplayName: Кровавый панцирь
+		Tooltip:
+			'''
+			Нажмите {0}, чтобы окутать себя кровью
+			Станьте полностью невосприимчивым к любому урону, но вы не можете двигаться или атаковать
+			'''
+	}
 }
 
 Buffs: {
@@ -505,6 +514,11 @@ Buffs: {
 	BleedingBloodDebuff: {
 		Description: Вы теряете слишком много крови...
 		DisplayName: Кровавое изливание
+	}
+
+	BloodBarrierDebuff: {
+		DisplayName: Кровавое истощение
+		Description: Кровь затвердела и больше не подчиняется. Панцирь нельзя активировать
 	}
 }
 
@@ -575,3 +589,4 @@ Tooltips.NotConsumed: Не расходуется
 Tiles.BleedingOre.MapEntry: Истекающая руда
 EternalSuffering: Вечные Страдания
 EternalSufferingActivated: Вечные Страдания включены. Удачи...
+// "Keybinds.Blood Carapace Ability.DisplayName": Blood  Carapace  Ability

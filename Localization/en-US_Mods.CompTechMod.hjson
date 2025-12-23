@@ -483,6 +483,15 @@ Items: {
 		DisplayName: Broken Ankh Fragment
 		Tooltip: A fragment of something truly useful
 	}
+
+	BloodCarapace: {
+		DisplayName: Blood Carapace
+		Tooltip:
+			'''
+			Press {0} to encase yourself in blood
+			Become completely immune but unable to move or attack
+			'''
+	}
 }
 
 Buffs: {
@@ -504,6 +513,11 @@ Buffs: {
 	BleedingBloodDebuff: {
 		Description: You are losing too much blood...
 		DisplayName: Bloody outpouring
+	}
+
+	BloodBarrierDebuff: {
+		DisplayName: Blood Exhaustion
+		Description: The blood has hardened and refuses to respond. The Carapace cannot be activated
 	}
 }
 
@@ -574,3 +588,4 @@ Tooltips.NotConsumed: Does not get consumed
 Tiles.BleedingOre.MapEntry: Bleeding Ore
 EternalSuffering: Eternal Suffering
 EternalSufferingActivated: Eternal Suffering is on. Good luck...
+"Keybinds.Blood Carapace Ability.DisplayName": Blood  Carapace  Ability

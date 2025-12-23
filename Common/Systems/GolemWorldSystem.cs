@@ -4,51 +4,73 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
+using Terraria.Chat;
+using CompTechMod.Common.DropConditions;
+using Terraria.Net;
 
 namespace CompTechMod.Common.Systems
 {
-	public class GolemWorldSystem : ModSystem
-	{
-		public static bool LihzardUnlocked = false;
-		private static bool printedMessage = false;
+    public class GolemWorldSystem : ModSystem
+    {
+        public static bool LihzardUnlocked { get; private set; }
+        private bool messagePrinted;
 
-		public override void OnWorldLoad() {
-			LihzardUnlocked = false;
-			printedMessage = false;
-		}
+        public override void OnWorldLoad()
+        {
+            if (NPC.downedGolemBoss)
+            {
+                LihzardUnlocked = true;
+            }
 
-		public override void OnWorldUnload() {
-			LihzardUnlocked = false;
-			printedMessage = false;
-		}
+            messagePrinted = false;
+        }
 
-		public override void SaveWorldData(TagCompound tag) {
-			if (LihzardUnlocked)
-				tag["LihzardUnlocked"] = true;
+        public override void OnWorldUnload()
+        {
+            LihzardUnlocked = false;
+            messagePrinted = false;
+        }
 
-			if (printedMessage)
-				tag["GolemMessagePrinted"] = true;
-		}
+        public override void SaveWorldData(TagCompound tag)
+        {
+            tag["LihzardUnlocked"] = LihzardUnlocked;
+            tag["GolemMessagePrinted"] = messagePrinted;
+        }
 
-		public override void LoadWorldData(TagCompound tag) {
-			LihzardUnlocked = tag.ContainsKey("LihzardUnlocked") && tag.GetBool("LihzardUnlocked");
-			printedMessage = tag.ContainsKey("GolemMessagePrinted") && tag.GetBool("GolemMessagePrinted");
-		}
+        public override void LoadWorldData(TagCompound tag)
+        {
+            LihzardUnlocked = tag.ContainsKey("LihzardUnlocked") && tag.GetBool("LihzardUnlocked");
+            messagePrinted = tag.ContainsKey("GolemMessagePrinted") && tag.GetBool("GolemMessagePrinted");
+        }
 
-		public override void PreUpdateWorld() {
-			if (LihzardUnlocked && !printedMessage) {
-				printedMessage = true;
+        public override void PostUpdateNPCs()
+        {
+            // Проверяем, был ли убит голем впервые
+            if (!LihzardUnlocked && NPC.downedGolemBoss)
+            {
+                LihzardUnlocked = true;
+                PrintMessage();
+            }
+        }
 
-				if (Main.netMode != NetmodeID.Server) {
-					Main.NewText(Language.GetTextValue("Mods.CompTechMod.Messages.SolarDeityDeath"), new Color(255, 185, 23));
-				}
-			}
-		}
+        private void PrintMessage()
+        {
+            if (messagePrinted) return;
+            messagePrinted = true;
 
-		public override void PostUpdateNPCs() {
-			if (!LihzardUnlocked && NPC.downedGolemBoss) {
-				LihzardUnlocked = true;
-			}
-		}
-	}
+            Color color = new Color(255, 185, 23); // солнечный оттенок
+            string text = Language.GetTextValue("Mods.CompTechMod.Messages.SolarDeityDeath");
+
+            // 🌐 Сервер рассылает сообщение всем клиентам
+            if (Main.netMode == NetmodeID.Server)
+            {
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), color);
+            }
+            else
+            {
+                // одиночка
+                Main.NewText(text, color);
+            }
+        }
+    }
 }
