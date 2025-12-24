@@ -9,106 +9,192 @@ namespace CompTechMod.Content.NPCs
     {
         public override bool InstancePerEntity => true;
 
-        private int eyeTimer = 0;
-        private int sphereTimer = 0;
-        private int labyrinthSpawned = 0;
+        private int eyeTimer;
+        private int deathrayTimer;
+        private int sphereWaveTimer;
+
+        private bool finalPhaseStarted;
 
         public override void AI(NPC npc)
         {
-            if (npc.type == NPCID.MoonLordCore)
+            if (npc.type != NPCID.MoonLordCore)
+                return;
+
+            Player player = Main.player[npc.target];
+            if (!player.active || player.dead)
+                return;
+
+            float hp = (float)npc.life / npc.lifeMax;
+
+            // =====================================
+            // PHASE 1 — усиленная ванилла (>70%)
+            // =====================================
+            if (hp > 0.7f)
             {
-                Player target = Main.player[npc.target];
-                if (!target.active || target.dead) return;
+                SpiralBurst(npc, 6, 6f, 90);
+            }
 
-                float hpPercent = (float)npc.life / npc.lifeMax;
+            // =====================================
+            // PHASE 2 — давление (70%–35%)
+            // =====================================
+            else if (hp > 0.35f)
+            {
+                SpiralBurst(npc, 8, 6.5f, 80);
+                TimedDeathray(npc, player, 420);
+                SphereRing(player, 420);
+            }
 
-                // ===========================================================
-                // 1. Спиральные PhantasmalEye из рук и головы
-                // ===========================================================
-                eyeTimer++;
-                if (eyeTimer >= 60) // каждую секунду
+            // =====================================
+            // PHASE 3 — финал (<35%)
+            // =====================================
+            else
+            {
+                SpiralBurst(npc, 10, 7.5f, 65);
+                TimedDeathray(npc, player, 300);
+
+                if (!finalPhaseStarted)
                 {
-                    eyeTimer = 0;
-                    for (int i = 0; i < 12; i++)
-                    {
-                        Vector2 vel = Vector2.UnitX.RotatedBy(MathHelper.ToRadians(i * 30 + Main.GameUpdateCount % 360)) * 6f;
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, vel,
-                            ProjectileID.PhantasmalEye, 70, 3f, Main.myPlayer);
-                    }
+                    finalPhaseStarted = true;
+                    sphereWaveTimer = 0;
                 }
 
-                // ===========================================================
-                // 2. Луч смерти всегда стреляет
-                // ===========================================================
-                if (Main.rand.NextBool(300)) // раз в ~5 сек
-                {
-                    Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.UnitY,
-                        ProjectileID.PhantasmalDeathray, 120, 5f, Main.myPlayer);
-                }
-
-                // ===========================================================
-                // 3. Круги из сфер вокруг игрока каждые 15 секунд
-                // ===========================================================
-                sphereTimer++;
-                if (sphereTimer >= 900) // 15 сек
-                {
-                    sphereTimer = 0;
-                    for (int r = 200; r <= 600; r += 200)
-                    {
-                        for (int i = 0; i < 16; i++)
-                        {
-                            Vector2 pos = target.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(i * (360 / 16))) * r;
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), pos, Vector2.Zero,
-                                ProjectileID.PhantasmalSphere, 80, 4f, Main.myPlayer);
-                        }
-                    }
-                }
-
-                // ===========================================================
-                // 4. Усиленный Moon Leech хил
-                // ===========================================================
-                if (npc.life < npc.lifeMax && npc.HasBuff(BuffID.MoonLeech))
-                {
-                    npc.life += 3000; 
-                    if (npc.life > npc.lifeMax) npc.life = npc.lifeMax;
-                }
-
-                // ===========================================================
-                // 5. <50% HP → лабиринт сфер
-                // ===========================================================
-                if (hpPercent <= 0.5f && labyrinthSpawned == 0)
-                {
-                    labyrinthSpawned = 1;
-                    int spacing = 120;
-                    int radius = 2000;
-
-                    for (int x = -radius; x <= radius; x += spacing)
-                    {
-                        for (int y = -radius; y <= radius; y += spacing)
-                        {
-                            Vector2 pos = target.Center + new Vector2(x, y);
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), pos, Vector2.Zero,
-                                ProjectileID.PhantasmalSphere, 90, 4f, Main.myPlayer);
-                        }
-                    }
-                }
+                SphereWalls(player);
             }
         }
 
-        // ===========================================================
-        // 6. Взрыв при смерти
-        // ===========================================================
+        // =====================================================
+        // СПИРАЛЬНЫЙ BURST (НЕ ПРИВЯЗАН К ДВИЖЕНИЮ)
+        // =====================================================
+        private void SpiralBurst(NPC npc, int count, float speed, int delay)
+        {
+            eyeTimer++;
+            if (eyeTimer < delay)
+                return;
+
+            eyeTimer = 0;
+
+            float offset = Main.GameUpdateCount * 0.04f;
+
+            for (int i = 0; i < count; i++)
+            {
+                float angle = MathHelper.TwoPi / count * i + offset;
+                Vector2 velocity = angle.ToRotationVector2() * speed;
+
+                Projectile.NewProjectile(
+                    npc.GetSource_FromAI(),
+                    npc.Center,
+                    velocity,
+                    ProjectileID.PhantasmalEye,
+                    65,
+                    3f
+                );
+            }
+        }
+
+        // =====================================================
+        // DEATHRAY — РЕДКИЙ И ЧИТАЕМЫЙ
+        // =====================================================
+        private void TimedDeathray(NPC npc, Player player, int cooldown)
+        {
+            deathrayTimer++;
+            if (deathrayTimer < cooldown)
+                return;
+
+            deathrayTimer = 0;
+
+            Vector2 dir = (player.Center - npc.Center).SafeNormalize(Vector2.UnitY);
+
+            Projectile.NewProjectile(
+                npc.GetSource_FromAI(),
+                npc.Center,
+                dir,
+                ProjectileID.PhantasmalDeathray,
+                130,
+                6f
+            );
+        }
+
+        // =====================================================
+        // КОЛЬЦО СФЕР ВОКРУГ ИГРОКА
+        // =====================================================
+        private void SphereRing(Player player, int cooldown)
+        {
+            sphereWaveTimer++;
+            if (sphereWaveTimer < cooldown)
+                return;
+
+            sphereWaveTimer = 0;
+
+            int count = 10;
+            float radius = 360f;
+
+            for (int i = 0; i < count; i++)
+            {
+                float angle = MathHelper.TwoPi / count * i;
+                Vector2 pos = player.Center + angle.ToRotationVector2() * radius;
+
+                Projectile.NewProjectile(
+                    player.GetSource_FromAI(),
+                    pos,
+                    Vector2.Zero,
+                    ProjectileID.PhantasmalSphere,
+                    75,
+                    3f
+                );
+            }
+        }
+
+        // =====================================================
+        // ФИНАЛ — СТЕНЫ, А НЕ СПАМ
+        // =====================================================
+        private void SphereWalls(Player player)
+        {
+            sphereWaveTimer++;
+            if (sphereWaveTimer < 120)
+                return;
+
+            sphereWaveTimer = 0;
+
+            int spacing = 180;
+            int length = 6;
+
+            Vector2 dir = Main.rand.NextBool()
+                ? Vector2.UnitX
+                : Vector2.UnitY;
+
+            for (int i = -length; i <= length; i++)
+            {
+                Vector2 pos = player.Center + dir * i * spacing;
+
+                Projectile.NewProjectile(
+                    player.GetSource_FromAI(),
+                    pos,
+                    Vector2.Zero,
+                    ProjectileID.PhantasmalSphere,
+                    85,
+                    3f
+                );
+            }
+        }
+
+        // =====================================================
+        // СМЕРТЬ — ЧИСТО ВИЗУАЛ
+        // =====================================================
         public override void OnKill(NPC npc)
         {
-            if (npc.type == NPCID.MoonLordCore)
-            {
-                for (int i = 0; i < 50; i++)
-                {
-                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.PurpleTorch, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f));
-                }
+            if (npc.type != NPCID.MoonLordCore)
+                return;
 
-                Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Vector2.Zero,
-                    ProjectileID.PhantasmalDeathray, 1000, 10f, Main.myPlayer);
+            for (int i = 0; i < 40; i++)
+            {
+                Dust.NewDust(
+                    npc.position,
+                    npc.width,
+                    npc.height,
+                    DustID.PurpleTorch,
+                    Main.rand.NextFloat(-4f, 4f),
+                    Main.rand.NextFloat(-4f, 4f)
+                );
             }
         }
     }
