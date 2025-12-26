@@ -13,7 +13,7 @@ namespace CompTechMod.Content.NPCs
             NPC.aiStyle = -1;
             NPC.damage = 0;
             NPC.defense = 0;
-            NPC.lifeMax = 100000;
+            NPC.lifeMax = 50000000;
             NPC.knockBackResist = 0f;
             NPC.dontTakeDamageFromHostiles = true;
             NPC.friendly = false;

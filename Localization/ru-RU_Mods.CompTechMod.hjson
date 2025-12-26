@@ -555,21 +555,116 @@ Configs: {
 }
 
 NPCs: {
-	TestDummy.DisplayName: Испытательный Манекен
+	TestDummy.DisplayName: Испытательный манекен
 
 	DeepSeaShark: {
-		DisplayName: Глубоководная Акула
-		BossChecklistIntegration.SpawnInfo: Условия появления неизвестны
+		// DisplayName: Deep Sea Shark
+		// BossChecklistIntegration.SpawnInfo: Spawn conditions unknown
 	}
 
 	BleedingSlime.DisplayName: Истекающий слизень
 	EyeParasite.DisplayName: Глазной паразит
-	ExpiringCore.DisplayName: Истекающее Ядро
+
+	ExpiringCore: {
+		DisplayName: Истекающее ядро
+		// Name: Expiring Core
+		Description: Угасающая искра.
+	}
 
 	ClownSlime: {
-		DisplayName: Варк
-		TownNPCMood.Content: мэх
-		Census.SpawnCondition: Conditions unknown
+		// DisplayName: Wark
+		// TownNPCMood.Content: meh
+		// Census.SpawnCondition: Conditions unknown
+	}
+
+	KingSlime: {
+		DisplayName: Король слизней
+		Description: Слизистый монарх.
+	}
+
+	EyeofCthulhu: {
+		DisplayName: Глаз Ктулху
+		Description: Полуночный взор.
+	}
+
+	EaterOfWorlds: {
+		DisplayName: Пожиратель миров
+		Description: Разрушитель глубин.
+	}
+
+	BrainOfCthulhu: {
+		DisplayName: Мозг Ктулху
+		Description: Ткач безумия.
+	}
+
+	QueenBee: {
+		DisplayName: Королева пчёл
+		Description: Ярость улья.
+	}
+
+	Skeletron: {
+		DisplayName: Скелетрон
+		Description: Проклятый страж.
+	}
+
+	Deerclops: {
+		DisplayName: Циклоп-олень
+		Description: Морозный голод.
+	}
+
+	WallOfFlesh: {
+		DisplayName: Стена плоти
+		Description: Печать мира.
+	}
+
+	QueenSlime: {
+		DisplayName: Королева слизней
+		Description: Священная владычица.
+	}
+
+	TheDestroyer: {
+		DisplayName: Уничтожитель
+		Description: Железный душитель.
+	}
+
+	TheTwins: {
+		DisplayName: Близнецы
+		Description: Ночные разведники.
+	}
+
+	SkeletronPrime: {
+		DisplayName: Скелетрон Прайм
+		Description: Механический ужас.
+	}
+
+	Plantera: {
+		DisplayName: Плантера
+		Description: Ярость джунглей.
+	}
+
+	Golem: {
+		DisplayName: Голем
+		Description: Солнечный идол.
+	}
+
+	DukeFishron: {
+		DisplayName: Рыброн
+		Description: Океанический тиран.
+	}
+
+	EmpressOfLight: {
+		DisplayName: Императрица света
+		Description: Эфирное сияние.
+	}
+
+	LunaticCultist: {
+		DisplayName: Лунатик Культист
+		Description: Вестник погибели.
+	}
+
+	MoonLord: {
+		DisplayName: Лунный Лорд
+		Description: Звёздный финал.
 	}
 }
 

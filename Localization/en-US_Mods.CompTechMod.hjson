@@ -563,12 +563,107 @@ NPCs: {
 
 	BleedingSlime.DisplayName: Bleeding Slime
 	EyeParasite.DisplayName: Eye Parasite
-	ExpiringCore.DisplayName: Bleeding Core
+
+	ExpiringCore: {
+		DisplayName: Bleeding Core
+		Name: Expiring Core
+		Description: The Dying Spark.
+	}
 
 	ClownSlime: {
 		DisplayName: Wark
 		TownNPCMood.Content: meh
 		Census.SpawnCondition: Conditions unknown
+	}
+
+	KingSlime: {
+		DisplayName: King Slime
+		Description: The Royal Amalgam.
+	}
+
+	EyeofCthulhu: {
+		DisplayName: Eye of Cthulhu
+		Description: Night’s Gaze.
+	}
+
+	EaterOfWorlds: {
+		DisplayName: Eater of Worlds
+		Description: The Abyssal Scourge.
+	}
+
+	BrainOfCthulhu: {
+		DisplayName: Brain of Cthulhu
+		Description: Architect of Madness.
+	}
+
+	QueenBee: {
+		DisplayName: Queen Bee
+		Description: The Hive’s Vengeance.
+	}
+
+	Skeletron: {
+		DisplayName: Skeletron
+		Description: The Bound Guardian.
+	}
+
+	Deerclops: {
+		DisplayName: Deerclops
+		Description: Glacial Hunger.
+	}
+
+	WallOfFlesh: {
+		DisplayName: Wall of Flesh
+		Description: The World’s Seal.
+	}
+
+	QueenSlime: {
+		DisplayName: Queen Slime
+		Description: Hallowed Sovereign.
+	}
+
+	TheDestroyer: {
+		DisplayName: The Destroyer
+		Description: The Steel Constrictor.
+	}
+
+	TheTwins: {
+		DisplayName: The Twins
+		Description: Duality of Terror.
+	}
+
+	SkeletronPrime: {
+		DisplayName: Skeletron Prime
+		Description: The Mechanical Purge.
+	}
+
+	Plantera: {
+		DisplayName: Plantera
+		Description: Floral Wrath.
+	}
+
+	Golem: {
+		DisplayName: Golem
+		Description: The Solar Idol.
+	}
+
+	DukeFishron: {
+		DisplayName: Duke Fishron
+		Description: The Oceanic Tyrant.
+	}
+
+	EmpressOfLight: {
+		DisplayName: Empress of Light
+		Description: Ethereal Radiance.
+	}
+
+	LunaticCultist: {
+		DisplayName: Lunatic Cultist
+		Description: Herald of Doom.
+	}
+
+	MoonLord: {
+		DisplayName: Moon Lord
+		Description: The Celestial End.
 	}
 }
 
