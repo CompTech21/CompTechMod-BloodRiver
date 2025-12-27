@@ -492,6 +492,15 @@ Items: {
 			Become completely immune but unable to move or attack
 			'''
 	}
+
+	BloodShell: {
+		DisplayName: Blood Shell
+		Tooltip:
+			'''
+			Summons the Dreadnautilus
+			Can only be used during a Blood Moon
+			'''
+	}
 }
 
 Buffs: {

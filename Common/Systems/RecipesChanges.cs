@@ -244,7 +244,7 @@ namespace CompTechMod.Common.Systems
             Recipe.Create(ItemID.LifeFruit)
                 .AddIngredient(ItemID.LifeCrystal, 1)
                 .AddIngredient(ItemID.JungleSpores, 5)
-                .AddIngredient(ItemID.Ectoplasm, 5)
+                .AddIngredient(ItemID.Ectoplasm, 1)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
 

@@ -15,6 +15,9 @@ namespace CompTechMod.Content.NPCs
         private int projectileTimer;
         private int minionTimer;
 
+        private int postTeleportCooldown;
+        private int noContactDamageTimer;
+
         public override void AI(NPC npc)
         {
             if (npc.type != NPCID.QueenSlimeBoss)
@@ -25,10 +28,19 @@ namespace CompTechMod.Content.NPCs
                 return;
 
             // ============================
-            // 1. Спавн кристальных слизней
+            // Таймеры после телепорта
+            // ============================
+            if (postTeleportCooldown > 0)
+                postTeleportCooldown--;
+
+            if (noContactDamageTimer > 0)
+                noContactDamageTimer--;
+
+            // ============================
+            // 1. Миньоны — умеренно
             // ============================
             minionTimer++;
-            if (minionTimer >= 90)
+            if (minionTimer >= 140)
             {
                 minionTimer = 0;
 
@@ -37,71 +49,35 @@ namespace CompTechMod.Content.NPCs
                     (n.type == NPCID.ShimmerSlime || n.type == NPCID.RainbowSlime)
                 );
 
-                if (count < 6)
+                if (count < 4)
                 {
-                    int type = Main.rand.NextBool()
-                        ? NPCID.ShimmerSlime
-                        : NPCID.RainbowSlime;
-
                     NPC.NewNPC(
                         npc.GetSource_FromAI(),
                         (int)npc.Center.X,
                         (int)npc.Center.Y,
-                        type
+                        Main.rand.NextBool() ? NPCID.ShimmerSlime : NPCID.RainbowSlime
                     );
                 }
             }
 
             // ============================
-            // 2. ДОЖДЬ ИЗ ШАРОВ СВЕРХУ
+            // 2. Кристальный дождь — честный
             // ============================
             crystalRainTimer++;
-            if (crystalRainTimer >= 120)
+            if (crystalRainTimer >= 180)
             {
                 crystalRainTimer = 0;
 
-                for (int i = -2; i <= 2; i++)
+                for (int i = -1; i <= 1; i++)
                 {
-                    Vector2 spawnPos = target.Center + new Vector2(i * 120, -700);
-                    Vector2 velocity = new Vector2(0, 12f);
+                    Vector2 spawnPos = target.Center + new Vector2(i * 180, -650);
 
                     Projectile.NewProjectile(
                         npc.GetSource_FromAI(),
                         spawnPos,
-                        velocity,
+                        new Vector2(0, 8f),
                         ProjectileID.QueenSlimeMinionBlueSpike,
-                        30,
-                        3f,
-                        Main.myPlayer
-                    );
-                }
-            }
-
-            // ============================
-            // 3. АТАКА В ВОЗДУХЕ (ВЕЕР)
-            // ============================
-            projectileTimer++;
-            if (projectileTimer >= 150 && npc.velocity.Y != 0f)
-            {
-                projectileTimer = 0;
-
-                Vector2 direction = target.Center - npc.Center;
-                direction.Normalize();
-
-                int count = 7;
-                float spread = MathHelper.ToRadians(35f);
-
-                for (int i = 0; i < count; i++)
-                {
-                    Vector2 perturbed =
-                        direction.RotatedBy(MathHelper.Lerp(-spread, spread, i / (float)(count - 1))) * 9f;
-
-                    Projectile.NewProjectile(
-                        npc.GetSource_FromAI(),
-                        npc.Center,
-                        perturbed,
-                        ProjectileID.HallowBossSplitShotCore,
-                        28,
+                        22,
                         2f,
                         Main.myPlayer
                     );
@@ -109,52 +85,97 @@ namespace CompTechMod.Content.NPCs
             }
 
             // ============================
-            // 4. БЫСТРЫЕ ТЕЛЕПОРТЫ
+            // 3. Воздушный веер — с окнами
             // ============================
-            teleportTimer++;
-            if (teleportTimer >= 240)
+            projectileTimer++;
+            if (projectileTimer >= 200 &&
+                npc.velocity.Y != 0f &&
+                postTeleportCooldown <= 0)
             {
-                teleportTimer = 0;
+                projectileTimer = 0;
 
-                Vector2 offset = new Vector2(
-                    Main.rand.Next(-400, 401),
-                    Main.rand.Next(-300, -100)
-                );
+                Vector2 dir = (target.Center - npc.Center).SafeNormalize(Vector2.UnitY);
 
-                npc.Center = target.Center + offset;
-                npc.velocity = Vector2.Zero;
+                int count = 5;
+                float spread = MathHelper.ToRadians(24f);
 
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < count; i++)
                 {
-                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.HallowedPlants);
+                    Vector2 perturbed =
+                        dir.RotatedBy(MathHelper.Lerp(-spread, spread, i / (float)(count - 1))) * 8f;
+
+                    Projectile.NewProjectile(
+                        npc.GetSource_FromAI(),
+                        npc.Center,
+                        perturbed,
+                        ProjectileID.HallowBossSplitShotCore,
+                        25,
+                        2f,
+                        Main.myPlayer
+                    );
                 }
             }
 
             // ============================
-            // 5. ФАЗА ЯРОСТИ (<30% HP)
+            // 4. ЧЕСТНЫЙ телепорт
+            // ============================
+            teleportTimer++;
+            if (teleportTimer >= 320)
+            {
+                teleportTimer = 0;
+
+                // телеграф
+                for (int i = 0; i < 30; i++)
+                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.HallowedPlants);
+
+                Vector2 offset;
+                do
+                {
+                    offset = Main.rand.NextVector2CircularEdge(700, 450);
+                }
+                while (offset.Length() < 500f); // ❗ минимум дистанции
+
+                npc.Center = target.Center + offset;
+                npc.velocity = Vector2.Zero;
+
+                postTeleportCooldown = 60;
+                noContactDamageTimer = 60;
+            }
+
+            // ============================
+            // 5. Ярость — но без анфэйр
             // ============================
             if (npc.life < npc.lifeMax * 0.3f)
             {
-                npc.knockBackResist = 0f;
+                if (npc.velocity.Y > 0f && postTeleportCooldown <= 0)
+                    npc.velocity.Y += 0.35f;
 
-                if (npc.velocity.Y > 0f)
-                    npc.velocity.Y += 0.6f;
-
-                if (Main.rand.NextBool(80))
+                if (Main.rand.NextBool(160) && postTeleportCooldown <= 0)
                 {
-                    Vector2 dir = (target.Center - npc.Center).SafeNormalize(Vector2.UnitY) * 14f;
+                    Vector2 dir = (target.Center - npc.Center).SafeNormalize(Vector2.UnitY) * 11f;
 
                     Projectile.NewProjectile(
                         npc.GetSource_FromAI(),
                         npc.Center,
                         dir,
                         ProjectileID.HallowBossRainbowStreak,
-                        35,
-                        3f,
+                        28,
+                        2f,
                         Main.myPlayer
                     );
                 }
             }
+        }
+
+        // ============================
+        // ❌ Убираем контактный урон
+        // ============================
+        public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
+        {
+            if (npc.type == NPCID.QueenSlimeBoss && noContactDamageTimer > 0)
+                return false;
+
+            return true;
         }
     }
 }
