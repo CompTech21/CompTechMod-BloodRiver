@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,8 +17,7 @@ namespace CompTechMod.Content.NPCs
         private int phase;
         private int attackTimer;
         private float rotationAngle;
-        private Vector2? teleportPos;
-        private int teleportTimer;
+        private int despawnTimer;
 
         public override void SetStaticDefaults()
         {
@@ -41,11 +39,19 @@ namespace CompTechMod.Content.NPCs
 
             NPC.HitSound = SoundID.NPCHit4;
             NPC.DeathSound = SoundID.NPCDeath14;
-            Music = MusicID.Boss5;
+
+            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ExpiringCoreOst");
+            SceneEffectPriority = SceneEffectPriority.BossHigh;
         }
 
         public override void AI()
         {
+            if (!AnyAlivePlayer())
+            {
+                DespawnBehavior();
+                return;
+            }
+
             Player player = Main.player[NPC.target];
             if (!player.active || player.dead)
             {
@@ -53,10 +59,10 @@ namespace CompTechMod.Content.NPCs
                 return;
             }
 
-            // Биом-чек
+            despawnTimer = 0;
+
             NPC.dontTakeDamage = !player.ZoneCrimson;
 
-            // Пульсирующее свечение
             float pulse = (float)Math.Sin(Main.GameUpdateCount * 0.1f) * 0.5f + 0.5f;
             Lighting.AddLight(NPC.Center, 1.2f * pulse, 0f, 0f);
 
@@ -74,49 +80,66 @@ namespace CompTechMod.Content.NPCs
 
             switch (phase)
             {
-                case 1:
-                    PhaseOne(player);
-                    break;
-                case 2:
-                    PhaseTwo(player);
-                    break;
-                case 3:
-                    PhaseThree(player);
-                    break;
-                case 4:
-                    PhaseFour(player);
-                    break;
+                case 1: PhaseOne(player); break;
+                case 2: PhaseTwo(player); break;
+                case 3: PhaseThree(player); break;
+                case 4: PhaseFour(player); break;
             }
+        }
+
+        // ================= ДЕСПАВН =================
+
+        private bool AnyAlivePlayer()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player p = Main.player[i];
+                if (p.active && !p.dead)
+                    return true;
+            }
+            return false;
+        }
+
+        private void DespawnBehavior()
+        {
+            despawnTimer++;
+
+            NPC.velocity = Vector2.Lerp(
+                NPC.velocity,
+                new Vector2(0f, -20f),
+                0.05f
+            );
+
+            NPC.rotation += 0.1f;
+            NPC.dontTakeDamage = true;
+
+            if (despawnTimer > 180)
+                NPC.active = false;
         }
 
         // ================= ФАЗЫ =================
 
         private void PhaseOne(Player player)
         {
-            Hover(player, 240, 4f);
-
+            Hover(player, 240);
             if (attackTimer % 90 == 0)
                 RadialShot(6, 7f);
         }
 
         private void PhaseTwo(Player player)
         {
-            Hover(player, 180, 5f);
-
+            Hover(player, 180);
             if (attackTimer % 120 == 0)
                 SpiralShot(16, 8f);
-
             if (attackTimer % 240 == 0)
-                DashWithWarning(player);
+                Dash(player);
         }
 
         private void PhaseThree(Player player)
         {
             Orbit(player, 260, 0.03f);
-
             if (attackTimer % 80 == 0)
                 RadialShot(10, 8f);
-
             if (attackTimer % 200 == 0)
                 Teleport(player);
         }
@@ -124,17 +147,15 @@ namespace CompTechMod.Content.NPCs
         private void PhaseFour(Player player)
         {
             Orbit(player, 200, 0.06f);
-
             if (attackTimer % 40 == 0)
                 SpiralShot(20, 9f);
-
             if (attackTimer % 120 == 0)
-                DashWithWarning(player);
+                Dash(player);
         }
 
         // ================= ДВИЖЕНИЕ =================
 
-        private void Hover(Player player, float height, float speed)
+        private void Hover(Player player, float height)
         {
             Vector2 target = player.Center + new Vector2(0, -height);
             NPC.velocity = Vector2.Lerp(NPC.velocity, (target - NPC.Center) * 0.05f, 0.08f);
@@ -142,10 +163,10 @@ namespace CompTechMod.Content.NPCs
 
         private void Orbit(Player player, float radius, float speed)
         {
-            Vector2 orbitPos = player.Center +
+            Vector2 pos = player.Center +
                 new Vector2((float)Math.Cos(rotationAngle), (float)Math.Sin(rotationAngle)) * radius;
 
-            NPC.velocity = (orbitPos - NPC.Center) * speed;
+            NPC.velocity = (pos - NPC.Center) * speed;
         }
 
         // ================= АТАКИ =================
@@ -155,11 +176,15 @@ namespace CompTechMod.Content.NPCs
             for (int i = 0; i < count; i++)
             {
                 Vector2 vel = Vector2.UnitX.RotatedBy(MathHelper.TwoPi / count * i) * speed;
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vel,
-                    ModContent.ProjectileType<BloodBlast>(), NPC.damage / 4, 2f);
+                Projectile.NewProjectile(
+                    NPC.GetSource_FromAI(),
+                    NPC.Center,
+                    vel,
+                    ModContent.ProjectileType<BloodBlast>(),
+                    NPC.damage / 4,
+                    2f
+                );
             }
-
-            SpawnPulseDust();
         }
 
         private void SpiralShot(int count, float speed)
@@ -169,62 +194,26 @@ namespace CompTechMod.Content.NPCs
                 Vector2 vel = Vector2.UnitX
                     .RotatedBy(rotationAngle + MathHelper.TwoPi / count * i) * speed;
 
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vel,
-                    ModContent.ProjectileType<BloodBlast>(), NPC.damage / 4, 2f);
+                Projectile.NewProjectile(
+                    NPC.GetSource_FromAI(),
+                    NPC.Center,
+                    vel,
+                    ModContent.ProjectileType<BloodBlast>(),
+                    NPC.damage / 4,
+                    2f
+                );
             }
-
-            SpawnPulseDust();
         }
 
-        private void DashWithWarning(Player player)
+        private void Dash(Player player)
         {
-            // Предупреждение
-            for (int i = 0; i < 25; i++)
-            {
-                Dust.NewDustPerfect(NPC.Center,
-                    DustID.Blood,
-                    Main.rand.NextVector2Circular(3, 3),
-                    150,
-                    Color.DarkRed,
-                    1.6f).noGravity = true;
-            }
-
+            NPC.velocity = (player.Center - NPC.Center).SafeNormalize(Vector2.UnitX) * 35f;
             SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
-
-            Vector2 dash = (player.Center - NPC.Center).SafeNormalize(Vector2.UnitX) * 35f;
-            NPC.velocity = dash;
         }
 
         private void Teleport(Player player)
         {
-            teleportPos = player.Center + Main.rand.NextVector2Circular(350, 350);
-
-            for (int i = 0; i < 40; i++)
-            {
-                Dust.NewDustPerfect(NPC.Center,
-                    DustID.Blood,
-                    Main.rand.NextVector2Circular(5, 5),
-                    150,
-                    Color.Red,
-                    2f).noGravity = true;
-            }
-
-            NPC.Center = teleportPos.Value;
-        }
-
-        // ================= ЭФФЕКТЫ =================
-
-        private void SpawnPulseDust()
-        {
-            for (int i = 0; i < 15; i++)
-            {
-                Dust.NewDustPerfect(NPC.Center,
-                    DustID.Blood,
-                    Main.rand.NextVector2Circular(2, 2),
-                    150,
-                    Color.Red,
-                    1.4f).noGravity = true;
-            }
+            NPC.Center = player.Center + Main.rand.NextVector2Circular(350, 350);
         }
 
         // ================= ЛУТ =================
@@ -238,7 +227,6 @@ namespace CompTechMod.Content.NPCs
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentVortex, 1, 20, 25));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentNebula, 1, 20, 25));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentStardust, 1, 20, 25));
-
         }
 
         public override void OnKill()

@@ -253,6 +253,12 @@ namespace CompTechMod.Common.Systems
                 .AddIngredient(ItemID.Feather, 10)
                 .AddTile(TileID.Anvils)
                 .Register();
+
+            Recipe.Create(ItemID.FeralClaws)
+                .AddIngredient(ItemID.JungleSpores, 10)
+                .AddIngredient(ItemID.Leather, 5)
+                .AddTile(TileID.Loom)
+                .Register();
         }
     }
 }

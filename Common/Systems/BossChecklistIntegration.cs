@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 using Terraria;
-using Terraria.ID;
 
 namespace CompTechMod.Common.Systems
 {
@@ -21,7 +20,8 @@ namespace CompTechMod.Common.Systems
             if (bossChecklistMod.Version < new Version(1, 6))
                 return;
 
-            // Регистрируем ExpiringCore
+            // ================= EXPIRING CORE =================
+
             bossChecklistMod.Call(
                 "LogBoss",
                 Mod,
@@ -29,26 +29,30 @@ namespace CompTechMod.Common.Systems
                 19.0f,
                 (Func<bool>)(() => CompTechModSystem.downedExpiringCore),
                 ModContent.NPCType<Content.NPCs.ExpiringCore>(),
-                new Dictionary<string, object>()
+                new Dictionary<string, object>
                 {
                     ["spawnItems"] = ModContent.ItemType<Content.Items.BloodyAltarItem>(),
-                    ["collectibles"] = new List<int>()
-                    {
-
-                    },
+                    ["collectibles"] = new List<int>(),
                     ["spawnInfo"] = "Призывается при использовании застывшей крови на кровавом алтаре ночью",
                     ["customBossInfo"] = "Входит в ярость за пределами багрянца"
                 }
             );
 
-            // Добавляем кастомную призывалку для Plantera (правильный способ!)
+            // ================= ДОБАВЛЯЕМ ПРИЗЫВАЛКИ К ВАНИЛЬНЫМ БОССАМ =================
+
             bossChecklistMod.Call(
                 "SubmitEntrySpawnItems",
                 Mod,
-                new Dictionary<string, object>()
+                new Dictionary<string, object>
                 {
+                    // Plantera
                     { "Terraria Plantera", ModContent.ItemType<Content.Items.ArtificialBulb>() },
-                    { "Terraria HallowBoss", ModContent.ItemType<Content.Items.RainbowJewel>() }
+
+                    // Empress of Light
+                    { "Terraria HallowBoss", ModContent.ItemType<Content.Items.RainbowJewel>() },
+
+                    // Duke Fishron (РЫБРОН)
+                    { "Terraria DukeFishron", ModContent.ItemType<Content.Items.SuspiciousLookingBait>() }
                 }
             );
         }

@@ -100,7 +100,11 @@ namespace CompTechMod
                         Main.npc[npcIndex].netUpdate = true;
 
                     break;
+
+                    
                 }
+
+                
             }
         }
     }

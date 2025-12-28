@@ -3,6 +3,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Chat;
+using Terraria.Localization;
 using CompTechMod.Content.Items;
 
 namespace CompTechMod.Content.Tiles
@@ -36,31 +38,41 @@ namespace CompTechMod.Content.Tiles
         {
             Player player = Main.LocalPlayer;
 
-            // ===== MULTIPLAYER CLIENT =====
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 ModPacket packet = Mod.GetPacket();
                 packet.Write((byte)CompTechPackets.SummonExpiringCore);
-                packet.Write((byte)player.whoAmI);
+                packet.Write(player.whoAmI);
                 packet.Send();
                 return true;
             }
 
-            // ===== SINGLEPLAYER =====
+            TrySummon(player);
+            return true;
+        }
+
+        public static void TrySummon(Player player)
+        {
             if (Main.dayTime)
             {
-                Main.NewText("At night...", Color.DarkRed);
-                return true;
+                ChatHelper.BroadcastChatMessage(
+                    NetworkText.FromLiteral("At night..."),
+                    Color.DarkRed
+                );
+                return;
             }
 
             if (!player.ConsumeItem(ModContent.ItemType<CongealedBlood>()))
             {
-                Main.NewText("Congealed Blood is needed!", Color.Red);
-                return true;
+                ChatHelper.BroadcastChatMessage(
+                    NetworkText.FromLiteral("Congealed Blood is needed!"),
+                    Color.Red
+                );
+                return;
             }
 
             if (NPC.AnyNPCs(ModContent.NPCType<Content.NPCs.ExpiringCore>()))
-                return true;
+                return;
 
             int offsetX = Main.rand.NextBool() ? 400 : -400;
             Vector2 spawnPos = player.Center + new Vector2(offsetX, 0);
@@ -72,7 +84,10 @@ namespace CompTechMod.Content.Tiles
                 ModContent.NPCType<Content.NPCs.ExpiringCore>()
             );
 
-            return true;
+            ChatHelper.BroadcastChatMessage(
+                NetworkText.FromLiteral("The core begins to awaken..."),
+                Color.DarkRed
+            );
         }
     }
 }

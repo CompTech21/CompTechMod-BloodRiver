@@ -8,11 +8,6 @@ namespace CompTechMod.Content.Projectiles
 {
     public class BloodBlast : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 10;
@@ -23,22 +18,44 @@ namespace CompTechMod.Content.Projectiles
             Projectile.penetrate = 1;
             Projectile.timeLeft = 300;
             Projectile.tileCollide = true;
+            Projectile.ignoreWater = true;
             AIType = ProjectileID.Bullet;
+        }
+
+        public override void AI()
+        {
+            // ===== ЯРКИЙ КРАСНЫЙ СВЕТ =====
+            Lighting.AddLight(
+                Projectile.Center,
+                1.4f, // R
+                0.1f, // G
+                0.1f  // B
+            );
+
+            // ===== СВЕТОВЫЕ ЧАСТИЦЫ =====
+            if (Main.rand.NextBool(2))
+            {
+                Dust dust = Dust.NewDustPerfect(
+                    Projectile.Center,
+                    DustID.Blood,
+                    Projectile.velocity * 0.1f,
+                    150,
+                    Color.Red,
+                    1.5f
+                );
+                dust.noGravity = true;
+            }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             if (info.Damage > 0)
             {
-                // накладывает твой дебафф
-                target.AddBuff(ModContent.BuffType<BleedingBloodDebuff>(), 120); // 2 сек
+                target.AddBuff(
+                    ModContent.BuffType<BleedingBloodDebuff>(),
+                    120
+                );
             }
-        }
-
-        public override void AI()
-        {
-            Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,
-            DustID.Blood, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 150, Color.Red, 1.2f);
         }
     }
 }
