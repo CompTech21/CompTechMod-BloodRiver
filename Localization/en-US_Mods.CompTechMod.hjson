@@ -499,6 +499,17 @@ Items: {
 			'''
 			Summons the Dreadnautilus
 			Can only be used during a Blood Moon
+			Does not get consumed
+			'''
+	}
+
+	SuspiciousLookingBait: {
+		DisplayName: Suspicious Looking Bait
+		Tooltip:
+			'''
+			Summons Duke Fishron when used
+			Enters a rage beyond the ocean
+			Does not get consumed
 			'''
 	}
 }
