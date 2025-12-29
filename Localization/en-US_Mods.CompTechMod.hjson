@@ -512,6 +512,17 @@ Items: {
 			Does not get consumed
 			'''
 	}
+
+	ScarletWings: {
+		DisplayName: Scarlet Wings
+		Tooltip:
+			'''
+			Grants infinite flight
+			Extremely high flight speed and mobility
+
+			[c/780505:- Wings forged from scarlet energy -]
+			'''
+	}
 }
 
 Buffs: {
