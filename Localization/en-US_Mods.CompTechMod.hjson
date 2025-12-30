@@ -534,6 +534,16 @@ Items: {
 			[c/1BE9C0:- Developer's Item - ]
 			'''
 	}
+
+	BloodyRelic: {
+		DisplayName: Bloody Relic
+		Tooltip:
+			'''
+			Activates the Boss Rush event
+			During the event, all bosses have increased health
+			The event ends after the final boss is defeated or all players die
+			'''
+	}
 }
 
 Buffs: {

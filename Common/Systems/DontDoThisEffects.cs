@@ -135,8 +135,7 @@ namespace CompTechMod.Common.Systems
 
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo info)
         {
-            if (npc.boss)
-                target.AddBuff(70, 600);
+
         }
     }
 
