@@ -221,7 +221,7 @@ namespace CompTechMod.Content.NPCs
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.PlatinumCoin, 1, 3, 5));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodEssence>(), 1, 4, 8));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodEssence>(), 1, 8, 16));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CongealedBlood>(), 1, 100, 150));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentSolar, 1, 20, 25));
             npcLoot.Add(ItemDropRule.Common(ItemID.FragmentVortex, 1, 20, 25));

@@ -523,6 +523,17 @@ Items: {
 			[c/780505:- Крылья, сотканные из алой энергии -]
 			'''
 	}
+
+	BloodchildStaff: {
+		DisplayName: Посох Кровавого Дитя
+		Tooltip:
+			'''
+			Призывает Кровавое Дитя, сражающегося за вас
+			Использует 2 слота призывателя
+
+			[c/1BE9C0:- Предмет Разработчика - ]
+			'''
+	}
 }
 
 Buffs: {
@@ -550,6 +561,11 @@ Buffs: {
 		DisplayName: Кровавое истощение
 		Description: Кровь затвердела и больше не подчиняется. Панцирь нельзя активировать
 	}
+
+	BloodyChildBuff: {
+		DisplayName: Кровавое Дитя
+		Description: Кровавое Дитя сражается на вашей стороне
+	}
 }
 
 Projectiles: {
@@ -561,6 +577,7 @@ Projectiles: {
 	GelSlicerProj.DisplayName: Gel Slicer Proj
 	EyeSpearProj.DisplayName: Eye Spear Proj
 	BloodBlast.DisplayName: Blood Blast
+	BloodyChildMinion.DisplayName: Bloody Child Minion
 }
 
 Configs: {

@@ -523,6 +523,17 @@ Items: {
 			[c/780505:- Wings forged from scarlet energy -]
 			'''
 	}
+
+	BloodchildStaff: {
+		DisplayName: Bloodchild Staff
+		Tooltip:
+			'''
+			Summons a Bloody Child minion to fight for you
+			Uses 2 summoner slots
+
+			[c/1BE9C0:- Developer's Item - ]
+			'''
+	}
 }
 
 Buffs: {
@@ -550,6 +561,11 @@ Buffs: {
 		DisplayName: Blood Exhaustion
 		Description: The blood has hardened and refuses to respond. The Carapace cannot be activated
 	}
+
+	BloodyChildBuff: {
+		DisplayName: Bloody Child
+		Description: The Bloody Child fights for you
+	}
 }
 
 Projectiles: {
@@ -561,6 +577,7 @@ Projectiles: {
 	GelSlicerProj.DisplayName: Gel Slicer Proj
 	EyeSpearProj.DisplayName: Eye Spear Proj
 	BloodBlast.DisplayName: Blood Blast
+	BloodyChildMinion.DisplayName: Bloody Child
 }
 
 Configs: {
