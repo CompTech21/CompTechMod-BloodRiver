@@ -12,24 +12,33 @@ namespace CompTechMod.Common.Systems
     {
         private static readonly Dictionary<int, int> guardianSpawnCooldown = new();
         private static bool guardiansSpawnedOnJoin = false;
+        private static bool hardmodeActivated = false;
 
-        public override void OnWorldLoad() => guardiansSpawnedOnJoin = false;
+        public override void OnWorldLoad()
+        {
+            guardiansSpawnedOnJoin = false;
+            hardmodeActivated = false;
+        }
 
         public override void PostUpdateWorld()
         {
             if (!CompWorld.DontDoThisMode) return;
 
-            if (!Main.dayTime)
+            if (!hardmodeActivated)
+            {
+                Main.hardMode = true;
+                hardmodeActivated = true;
+            }
+
+            if (!Main.dayTime && Main.rand.NextFloat() < 0.15f)
                 Main.bloodMoon = true;
 
             if (!guardiansSpawnedOnJoin)
             {
                 guardiansSpawnedOnJoin = true;
-                foreach (Player player in Main.player)
-                {
-                    if (player.active)
-                        SpawnGuardians(player, 6);
-                }
+                foreach (Player p in Main.player)
+                    if (p.active)
+                        SpawnGuardians(p, 6);
             }
         }
 
@@ -37,39 +46,34 @@ namespace CompTechMod.Common.Systems
         {
             if (!CompWorld.DontDoThisMode) return;
 
-            foreach (Player player in Main.player)
+            foreach (Player p in Main.player)
             {
-                if (!player.active) continue;
+                if (!p.active) continue;
 
-                var modPlayer = player.GetModPlayer<DontDoThisGlobalPlayer>();
+                var mp = p.GetModPlayer<DontDoThisGlobalPlayer>();
 
-                // "Бесконечная смерть"
-                if (modPlayer.endlessDeath)
+                if (mp.endlessDeath)
                 {
-                    if (!player.dead)
-                        player.KillMe(PlayerDeathReason.ByCustomReason($"{player.name} shouldn't have returned..."), 9999.0, 0, false);
+                    if (!p.dead)
+                        p.KillMe(PlayerDeathReason.ByCustomReason($"{p.name} shouldn't have returned..."), 9999, 0);
                     continue;
                 }
 
-                player.statDefense *= 0.5f;
-                player.GetDamage(DamageClass.Generic) *= 0.5f;
-                player.moveSpeed *= 0.4f;
-                if (player.extraAccessorySlots > 0)
-                    player.extraAccessorySlots--;
+                p.pickSpeed *= 2f;
 
-                if (!guardianSpawnCooldown.ContainsKey(player.whoAmI))
-                    guardianSpawnCooldown[player.whoAmI] = 0;
+                if (!guardianSpawnCooldown.ContainsKey(p.whoAmI))
+                    guardianSpawnCooldown[p.whoAmI] = 0;
 
-                if (guardianSpawnCooldown[player.whoAmI] > 0)
+                if (guardianSpawnCooldown[p.whoAmI] > 0)
                 {
-                    guardianSpawnCooldown[player.whoAmI]--;
+                    guardianSpawnCooldown[p.whoAmI]--;
                     continue;
                 }
 
                 if (Main.rand.NextFloat() < 0.05f)
                 {
-                    SpawnGuardians(player, 8);
-                    guardianSpawnCooldown[player.whoAmI] = 720000;
+                    SpawnGuardians(p, 8);
+                    guardianSpawnCooldown[p.whoAmI] = 720000;
                 }
             }
         }
@@ -78,48 +82,67 @@ namespace CompTechMod.Common.Systems
         {
             for (int i = 0; i < count; i++)
             {
-                Vector2 spawnPos = player.Center + new Vector2(Main.rand.Next(-400, 400), Main.rand.Next(-400, 400));
-                int npcIndex = NPC.NewNPC(null, (int)spawnPos.X, (int)spawnPos.Y, NPCID.DungeonGuardian);
-                if (npcIndex >= 0)
-                {
-                    Main.npc[npcIndex].target = player.whoAmI;
-                    Main.npc[npcIndex].friendly = false;
-                }
+                Vector2 pos = player.Center + Main.rand.NextVector2Circular(400, 400);
+                int npc = NPC.NewNPC(null, (int)pos.X, (int)pos.Y, NPCID.DungeonGuardian);
+                if (npc >= 0)
+                    Main.npc[npc].target = player.whoAmI;
             }
         }
     }
 
     public class DontDoThisGlobalNPC : GlobalNPC
     {
-        // флаг для проверки, что хп уже увеличено
-        private bool scaled = false;
-
-        public override bool InstancePerEntity => true; // ✅ Исправление
-
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
             if (!CompWorld.DontDoThisMode) return;
-            if (scaled) return;
-            scaled = true;
+            if (!npc.boss) return;
 
-            // Боссы ×3
+            int sameBossCount = 0;
+
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC other = Main.npc[i];
+                if (other.active && other.type == npc.type)
+                    sameBossCount++;
+            }
+
+            if (sameBossCount >= 2)
+                return;
+
+            NPC.NewNPC(
+                source,
+                (int)npc.Center.X + Main.rand.Next(-120, 120),
+                (int)npc.Center.Y,
+                npc.type
+            );
+
+            foreach (Player p in Main.player)
+            {
+                if (!p.active) continue;
+
+                int[] buffs =
+                {
+                    BuffID.Heartreach,
+                    BuffID.Ironskin,
+                    BuffID.NightOwl,
+                    BuffID.Regeneration
+                };
+
+                for (int i = 0; i < 3; i++)
+                    p.AddBuff(buffs[Main.rand.Next(buffs.Length)], 36000);
+            }
+        }
+
+        public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo info)
+        {
             if (npc.boss)
-            {
-                npc.lifeMax = (int)(npc.lifeMax * 2.5f);
-                npc.life = npc.lifeMax;
-            }
-            // Обычные враждебные мобы ×5
-            else if (!npc.friendly && !npc.townNPC && npc.lifeMax > 5)
-            {
-                npc.lifeMax = (int)(npc.lifeMax * 3.5f);
-                npc.life = npc.lifeMax;
-            }
+                target.AddBuff(70, 600);
         }
     }
 
     public class DontDoThisGlobalPlayer : ModPlayer
     {
-        private readonly int[] tombstoneProjectiles = new int[]
+        private readonly int[] tombstones =
         {
             ProjectileID.Headstone,
             ProjectileID.CrossGraveMarker,
@@ -127,8 +150,8 @@ namespace CompTechMod.Common.Systems
             ProjectileID.Obelisk
         };
 
-        public bool tombstonesSpawned = false;
-        public bool endlessDeath = false;
+        public bool tombstonesSpawned;
+        public bool endlessDeath;
 
         public override void OnEnterWorld()
         {
@@ -148,7 +171,7 @@ namespace CompTechMod.Common.Systems
             if (endlessDeath)
             {
                 if (!Player.dead)
-                    Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} can't live."), 9999.0, 0, false);
+                    Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} can't live."), 9999, 0);
                 return;
             }
 
@@ -158,26 +181,20 @@ namespace CompTechMod.Common.Systems
                 tombstonesSpawned = true;
             }
 
-            if (!Player.dead && tombstonesSpawned)
+            if (!Player.dead)
                 tombstonesSpawned = false;
         }
 
         public void SpawnTombstones()
         {
-            float radius = 128f;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
-                float angle = MathHelper.TwoPi * i / 5f + Main.rand.NextFloat(-0.2f, 0.2f);
-                Vector2 offset = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * Main.rand.NextFloat(64f, radius);
-                Vector2 pos = Player.Center + offset;
-
-                int projType = tombstoneProjectiles[Main.rand.Next(tombstoneProjectiles.Length)];
-
+                Vector2 pos = Player.Center + Main.rand.NextVector2Circular(128, 128);
                 Projectile.NewProjectile(
                     Player.GetSource_Death(),
                     pos,
                     Vector2.Zero,
-                    projType,
+                    tombstones[Main.rand.Next(tombstones.Length)],
                     0,
                     0f,
                     Player.whoAmI
@@ -194,11 +211,11 @@ namespace CompTechMod.Common.Systems
 
             if (type == TileID.Tombstones)
             {
-                Player player = Main.LocalPlayer;
-                if (player.active && !player.dead)
+                Player p = Main.LocalPlayer;
+                if (p.active && !p.dead)
                 {
-                    player.KillMe(PlayerDeathReason.ByCustomReason($"{player.name} потревожил покой мёртвых."), 9999.0, 0, false);
-                    player.GetModPlayer<DontDoThisGlobalPlayer>().SpawnTombstones();
+                    p.KillMe(PlayerDeathReason.ByCustomReason($"{p.name} disturbed the peace of the dead."), 9999, 0);
+                    p.GetModPlayer<DontDoThisGlobalPlayer>().SpawnTombstones();
                 }
             }
         }
