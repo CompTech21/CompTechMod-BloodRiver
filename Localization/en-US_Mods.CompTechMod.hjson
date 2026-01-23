@@ -544,6 +544,16 @@ Items: {
 			The event ends after the final boss is defeated or all players die
 			'''
 	}
+
+	BloodySmoothie: {
+		DisplayName: Bloody Smoothie
+		Tooltip:
+			'''
+			Moderately improves all stats
+
+			[c/780505:- Thick, warm, and tastes like something awful -]
+			'''
+	}
 }
 
 Buffs: {

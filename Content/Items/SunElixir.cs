@@ -38,7 +38,7 @@ namespace CompTechMod.Content.Items
         {
             CreateRecipe()
                 .AddIngredient(ItemID.BottledWater, 1)
-                .AddIngredient(ModContent.ItemType<LihzardEssence>(), 10)
+                .AddIngredient(ModContent.ItemType<LihzardEssence>(), 5)
                 .AddIngredient(ModContent.ItemType<CongealedBlood>(), 10)
                 .AddTile(TileID.LihzahrdFurnace)
                 .Register();
