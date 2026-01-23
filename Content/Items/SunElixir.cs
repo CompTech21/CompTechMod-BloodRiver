@@ -14,7 +14,7 @@ namespace CompTechMod.Content.Items
         public override void SetDefaults()
         {
             Item.width = 32;
-            Item.height = 42;
+            Item.height = 40;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.useTime = 17;
             Item.useAnimation = 17;
