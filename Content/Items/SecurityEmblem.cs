@@ -10,8 +10,8 @@ namespace CompTechMod.Content.Items
     {
         public override void SetDefaults()
         {
-            Item.width = 28;
-            Item.height = 28;
+            Item.width = 30;
+            Item.height = 30;
             Item.accessory = true;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 1, silver: 65);
