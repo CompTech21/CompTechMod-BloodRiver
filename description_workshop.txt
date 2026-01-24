@@ -1,22 +1,20 @@
-Blood River is a Terraria mod focused on expanding vanilla gameplay.
+[i:4270] Blood River is a Terraria mod focused on expanding vanilla gameplay.
 
-Current Features:
+[i:521] Current Features:
 
-- 50+ New Items
-- 4 New Enemies
-- 1 New Boss
-- 1 New Ore
-- New AI for vanilla bosses
-- Custom generation
-- Hardcore Mode
-- Hidden Secrets
+[i:521] 60+ New Items
+[i:521] 4 New Enemies
+[i:521] 1 New Boss
+[i:521] 1 New Ore
+[i:521] New AI for vanilla bosses
+[i:521] Custom Generation
+[i:521] Hardcore Mode
+[i:521] Hidden Secrets
 
-Special Thanks:
+[i:5337] Special Thanks:
 
-Odysseus of Ithaca (Spriter)
-DFDR (Spriter)
-W_elexis_W (Help with code)
+[i:5337] W_elexis_W (Help with code)
+[i:5337] Gustavo (Lead Artist)
 
-Development Status:
-This mod is currently in Alpha and will receive ongoing updates. Your support helps improve Blood River![quote=tModLoader CompTechMod]
-Developed By CompTech21[/quote]
+[i:549] Development Status:
+[i:549] This mod is currently in Beta and will receive ongoing updates. Your support helps improve Blood River!

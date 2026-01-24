@@ -2,7 +2,7 @@
 
 [i:521] Current Features:
 
-[i:521] 50+ New Items
+[i:521] 60+ New Items
 [i:521] 4 New Enemies
 [i:521] 1 New Boss
 [i:521] 1 New Ore
@@ -13,9 +13,8 @@
 
 [i:5337] Special Thanks:
 
-[i:5337] Odysseus of Ithaca (Spriter)
-[i:5337] DFDR (Spriter)
 [i:5337] W_elexis_W (Help with code)
+[i:5337] Gustavo (Lead Artist)
 
 [i:549] Development Status:
-[i:549] This mod is currently in Alpha and will receive ongoing updates. Your support helps improve Blood River!
+[i:549] This mod is currently in Beta and will receive ongoing updates. Your support helps improve Blood River!

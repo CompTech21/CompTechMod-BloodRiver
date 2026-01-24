@@ -2,17 +2,25 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
-using System.Linq;
 
 namespace CompTechMod.Content.Items
 {
     public class HeartSource : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            Main.RegisterItemAnimation(
+                Item.type,
+                new DrawAnimationVertical(5, 24)
+            );
+
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+        }
 
         public override void SetDefaults()
         {
-            Item.width = 32;
-            Item.height = 32;
+            Item.width = 42;
+            Item.height = 42;
             Item.accessory = true;
             Item.rare = -12;
             Item.value = Item.sellPrice(platinum: 15);
@@ -37,32 +45,6 @@ namespace CompTechMod.Content.Items
             player.endurance += 0.70f;
             player.GetArmorPenetration(DamageClass.Generic) += 100;
 
-            player.buffImmune[BuffID.Bleeding] = true;
-            player.buffImmune[BuffID.Poisoned] = true;
-            player.buffImmune[BuffID.OnFire] = true;
-            player.buffImmune[BuffID.Venom] = true;
-            player.buffImmune[BuffID.Darkness] = true;
-            player.buffImmune[BuffID.Blackout] = true;
-            player.buffImmune[BuffID.Silenced] = true;
-            player.buffImmune[BuffID.Cursed] = true;
-            player.buffImmune[BuffID.Confused] = true;
-            player.buffImmune[BuffID.Slow] = true;
-            player.buffImmune[BuffID.Weak] = true;
-            player.buffImmune[BuffID.BrokenArmor] = true;
-            player.buffImmune[BuffID.WitheredArmor] = true;
-            player.buffImmune[BuffID.WitheredWeapon] = true;
-            player.buffImmune[BuffID.CursedInferno] = true;
-            player.buffImmune[BuffID.Ichor] = true;
-            player.buffImmune[BuffID.Frostburn] = true;
-            player.buffImmune[BuffID.Chilled] = true;
-            player.buffImmune[BuffID.Frozen] = true;
-            player.buffImmune[BuffID.Webbed] = true;
-            player.buffImmune[BuffID.Stoned] = true;
-            player.buffImmune[BuffID.Obstructed] = true;
-            player.buffImmune[BuffID.Electrified] = true;
-            player.buffImmune[BuffID.ManaSickness] = true;
-            player.buffImmune[BuffID.ChaosState] = true;
-            player.buffImmune[BuffID.ShadowFlame] = true;
             player.noKnockback = true;
         }
 
