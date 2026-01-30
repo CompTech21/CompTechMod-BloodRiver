@@ -79,7 +79,6 @@ namespace CompTechMod.Content.NPCs
                 {
                     Vector2 dir = Vector2.Normalize(target.Center - npc.Center).RotatedBy(MathHelper.ToRadians(i * 25));
                         Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, dir * 10f, ProjectileID.DemonSickle, 20, 2f, Main.myPlayer);
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, dir * 18f, ProjectileID.BloodNautilusShot, 20, 2f, Main.myPlayer);
                 }
             }
         }
@@ -140,7 +139,6 @@ namespace CompTechMod.Content.NPCs
 
                 // Во время рывка создаём снаряды
                 Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, dir * 14f, ProjectileID.DemonSickle, 35, 2f, Main.myPlayer);
-                Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, dir * 12f, ProjectileID.BloodShot, 30, 2f, Main.myPlayer);
             }
         }
 
