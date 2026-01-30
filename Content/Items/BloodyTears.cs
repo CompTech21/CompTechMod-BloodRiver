@@ -16,12 +16,12 @@ namespace CompTechMod.Content.Items
 
         public override void SetDefaults()
         {
-            Item.width = 44;
-            Item.height = 44;
-            Item.damage = 320;
+            Item.width = 58;
+            Item.height = 58;
+            Item.damage = 139;
             Item.DamageType = DamageClass.Magic;
             Item.mana = 17;
-            Item.useTime = 7;
+            Item.useTime = 14;
             Item.useAnimation = 14;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;

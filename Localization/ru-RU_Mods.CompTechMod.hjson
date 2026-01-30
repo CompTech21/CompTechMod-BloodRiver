@@ -554,6 +554,17 @@ Items: {
 			[c/780505:- Густой, тёплый и на вкус как что-то ужасное -]
 			'''
 	}
+
+	SparkGun: {
+		DisplayName: Искровой пистолет
+		Tooltip:
+			'''
+			[c/FFDD44:Нестабильное пиротехническое устройство, выпускающее электрические звездчатые снаряды.]
+			[c/FF5555:Звёзды могут остановиться в воздухе и взорваться.]
+
+			[c/55FF55:Осторожно, не перегрейте!]
+			'''
+	}
 }
 
 Buffs: {
@@ -586,6 +597,21 @@ Buffs: {
 		DisplayName: Кровавое Дитя
 		Description: Кровавое Дитя сражается на вашей стороне
 	}
+
+	HotBuff: {
+		Description: Mods.CompTechMod.Buffs.HotBuff.Description
+		DisplayName: Нагрев выше 70%
+	}
+
+	ColdBuff: {
+		Description: Вы пережили жаркий взрыв. Пиррооружие временно заморожено
+		DisplayName: Остывание
+	}
+
+	BoomBuff: {
+		Description: Ваше тело охвачено пламенем! Осторожно, дальнейшее использование пиррооружия может быть смертельно опасным
+		DisplayName: Перегрев
+	}
 }
 
 Projectiles: {
@@ -598,6 +624,11 @@ Projectiles: {
 	EyeSpearProj.DisplayName: Eye Spear Proj
 	BloodBlast.DisplayName: Blood Blast
 	BloodyChildMinion.DisplayName: Bloody Child Minion
+	// SparkGunProj3.DisplayName: Spark Gun Proj3
+	// SparkGunProj2.DisplayName: Spark Gun Proj2
+	// SparkGunProj1.DisplayName: Spark Gun Proj1
+	// SparkGunProj.DisplayName: Spark Gun Proj
+	// OverheatExplosion.DisplayName: Overheat Explosion
 }
 
 Configs: {
@@ -752,3 +783,4 @@ Tiles.BleedingOre.MapEntry: Истекающая руда
 EternalSuffering: Вечные Страдания
 EternalSufferingActivated: Вечные Страдания включены. Удачи...
 // "Keybinds.Blood Carapace Ability.DisplayName": Blood  Carapace  Ability
+DamageClasses.PyrotechnicDamageClass.DisplayName: Пиротехнического Урона

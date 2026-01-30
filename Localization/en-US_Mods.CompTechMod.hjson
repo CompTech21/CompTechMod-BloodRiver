@@ -554,6 +554,17 @@ Items: {
 			[c/780505:- Thick, warm, and tastes like something awful -]
 			'''
 	}
+
+	SparkGun: {
+		DisplayName: Spark Gun
+		Tooltip:
+			'''
+			[c/FFDD44:A volatile pyrotechnic device that launches electrified star projectiles.]
+			[c/FF5555:Star projectiles may stop mid-air and explode.]
+
+			[c/55FF55:Be careful not to overheat!]
+			'''
+	}
 }
 
 Buffs: {
@@ -586,6 +597,21 @@ Buffs: {
 		DisplayName: Bloody Child
 		Description: The Bloody Child fights for you
 	}
+
+	HotBuff: {
+		Description: Mods.CompTechMod.Buffs.HotBuff.Description
+		DisplayName: Heat above 70%
+	}
+
+	ColdBuff: {
+		Description: You survived a fiery explosion. Pyrotechnic weapons are temporarily disable
+		DisplayName: Cooling
+	}
+
+	BoomBuff: {
+		Description: Your body is engulfed in flames! Beware, further use of pyrotechnic weapons can be deadly
+		DisplayName: Overheat
+	}
 }
 
 Projectiles: {
@@ -598,6 +624,11 @@ Projectiles: {
 	EyeSpearProj.DisplayName: Eye Spear Proj
 	BloodBlast.DisplayName: Blood Blast
 	BloodyChildMinion.DisplayName: Bloody Child
+	SparkGunProj3.DisplayName: Spark Gun Proj3
+	SparkGunProj2.DisplayName: Spark Gun Proj2
+	SparkGunProj1.DisplayName: Spark Gun Proj1
+	SparkGunProj.DisplayName: Spark Gun Proj
+	OverheatExplosion.DisplayName: Overheat Explosion
 }
 
 Configs: {
@@ -752,3 +783,4 @@ Tiles.BleedingOre.MapEntry: Bleeding Ore
 EternalSuffering: Eternal Suffering
 EternalSufferingActivated: Eternal Suffering is on. Good luck...
 "Keybinds.Blood Carapace Ability.DisplayName": Blood  Carapace  Ability
+DamageClasses.PyrotechnicDamageClass.DisplayName: Pyrotechnic Damage
