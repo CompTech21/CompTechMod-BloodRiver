@@ -297,20 +297,22 @@ Items: {
 		DisplayName: Heart Source
 		Tooltip:
 			'''
-			[i:3224] Reduces damage taken by 70%
-			[i:29] Increases maximum health by 100
-			[i:109] Increases maximum mana by 500
-			[i:938] Increases defense by 100
-			[i:5000] Considerably increases movement speed by 150%
-			[i:4978] Increases flight time by 300%
-			[i:4956] Increases attack speed by 120%
-			[i:548] Increases overall damage by 300%
-			[i:3212] Increases armor penetration by 100
-			[i:1254] Increases critical chance by 100%
-			[i:1613] Grants immunity to all debuffs
-			[i:1613] Grants immunity to knockback
+			[i:3224] Reduces damage taken by [c/FF6A6A:70%]
+			[i:29] Increases maximum life by [c/FF4D4D:+100]
+			[i:109] Increases maximum mana by [c/4DA6FF:+500]
+			[i:938] Increases defense by [c/BFBFBF:+100]
+			[i:5000] Greatly increases movement speed by [c/6AFF6A:+150%]
+			[i:4978] Increases flight time by [c/9AFFC9:+300%]
+			[i:4956] Increases attack speed by [c/FFD700:+120%]
+			[i:548] Increases all damage by [c/FF9F1A:+300%]
+			[i:3212] Increases armor penetration by [c/D1D1D1:+100]
+			[i:1254] Increases critical strike chance by [c/FF3C3C:+100%]
+			[i:1613] Grants immunity to [c/FF6AFF:all debuffs]
+			[i:1613] Grants immunity to [c/9AE6FF:knockback]
 
-			[c/1BE9C0:- Developer's Item - ]
+			[c/F6E27F:Forged from every force this world has to offer.]
+
+			[c/1BE9C0:- Developer Item -]
 			'''
 	}
 
